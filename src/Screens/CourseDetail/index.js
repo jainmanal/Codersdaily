@@ -23,7 +23,7 @@ export const CourseDetail = () => {
 <View>
     <Text>{item.heading}</Text>
     <Text>{item.subHeading}</Text>
-    <Text>{item.subHeading1}</Text>
+    <Text>{item.subHeading1} </Text>
 </View>
     )
 
