@@ -14,6 +14,7 @@ export const CustomHeader = () => {
 }
 const styles = StyleSheet.create({
     container: {
+        zIndex: 10,
         backgroundColor: '#fff',
         top: 0,
         position: 'absolute',

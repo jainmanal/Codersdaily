@@ -13,7 +13,7 @@ export const CourseDetail = () => {
             subHeading1: 'Python Installation',
         },
         {
-            id: 0,
+            id: 1,
             heading: 'Python',
             subHeading: 'Python Overview',
         },

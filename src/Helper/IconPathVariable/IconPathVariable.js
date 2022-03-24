@@ -7,6 +7,12 @@ const IconPathVariable = {
     College  : require('../../Assets/icon/college.png'),   
     User  : require('../../Assets/icon/user.png'),   
     Arrow  : require('../../Assets/icon/arrow.png'),   
+    Up  : require('../../Assets/icon/up.png'),   
+    Left  : require('../../Assets/icon/left.png'),   
+    Down  : require('../../Assets/icon/down.png'),   
+    Dot  : require('../../Assets/icon/dot.png'),   
+    Location  : require('../../Assets/icon/pin.png'),   
+    Search  : require('../../Assets/icon/search.png'),   
 
 }
 

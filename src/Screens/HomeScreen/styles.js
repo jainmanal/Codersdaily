@@ -5,10 +5,11 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../Helper/DeviceDimentions/index
 export const styles = StyleSheet.create({
     maincontainer: {
         marginTop: 60,
+        marginBottom: 80
     },
     bgImage: {
         padding: 15,
-        height: SCREEN_HEIGHT * 0.3
+        height: SCREEN_HEIGHT * 0.3,  
     },
     heading: {
         marginTop: 90,
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     cource: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: Colors.AppColor,
+        color: Colors.black,
     },
     subContainer: {
         padding: 10,
@@ -36,6 +37,16 @@ export const styles = StyleSheet.create({
         backgroundColor: Colors.White,
         marginHorizontal: 10,
         borderRadius: 10,
+        elevation:10,
+        marginVertical:10
+    },
+    subContainer1: {
+        width: 250,
+        backgroundColor: Colors.White,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        elevation:10,
+        marginVertical:10
     },
     icon: {
         height: 100,
@@ -84,5 +95,25 @@ export const styles = StyleSheet.create({
     text: {
         color: '#235284',
         fontSize: 16
+    },
+    image: {
+        height: 150,
+        width: 250,
+        justifyContent: 'flex-end',
+        padding: 10,
+    },
+    name: {
+        color: Colors.White,
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
+    textContainer: {
+        marginVertical: 15,
+        marginHorizontal: 10,
+    },
+    txt: {
+        fontSize: 18,
+        color: Colors.black,
+        fontWeight: 'bold'
     },
 })

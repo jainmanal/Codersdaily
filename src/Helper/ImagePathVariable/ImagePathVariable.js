@@ -6,7 +6,9 @@ const ImagePathVariable = {
     Python : require('../../Assets/image/python.png'),  
     Pharma : require('../../Assets/image/pharma.jpg') , 
     Java : require('../../Assets/image/java.png'),  
-  
+    College1 : require('../../Assets/image/college1.jpg'),  
+    College2 : require('../../Assets/image/college2.jpg'),  
+
 }
 
 export default ImagePathVariable
