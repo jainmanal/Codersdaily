@@ -8,6 +8,7 @@ const ImagePathVariable = {
     Java : require('../../Assets/image/java.png'),  
     College1 : require('../../Assets/image/college1.jpg'),  
     College2 : require('../../Assets/image/college2.jpg'),  
+    CollegeLogo1 : require('../../Assets/image/collegeLogo1.png'),  
 
 }
 

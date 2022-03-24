@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     maincontainer: {
         marginTop: 60,
         padding: 10,
-        marginBottom: 200
+        marginBottom: 515
     },
     subContainer1: {
         backgroundColor: Colors.White,
@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 10,
         marginVertical: 10,
-        zIndex: 10
+        // zIndex: 10,
+        
     },
     image: {
         height: 200,
@@ -67,14 +68,23 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.AppColor,
         borderRadius: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        height: 50,
+        paddingHorizontal: 15
+    },
+    dropdownContainer: {
+        // flexDirection: 'row',
+        zIndex: 10,
+        // alignItems: 'center',
+        // backgroundColor: 'white',
+        marginVertical: 10,
+        height: '60%',
+        marginBottom: -100
     },
     dropdown: {
-        borderColor: "#fff",
+        borderColor: Colors.AppColor,
         paddingHorizontal: 20,
-        width: '93%',
-        borderRadius: 0,
-        // backgroundColor: Colors.black,
-        // zIndex:100
+        // borderRadius: 0,
+        // width: '99%',
     }
 })

@@ -17,6 +17,7 @@ import { JavaTopicList } from "../Screens/TopicList/JavaTopicList";
 import { PharmaTopicList } from "../Screens/TopicList/PharmaTopicList";
 import JavaTopicDescription from "../Screens/Description/JavaTopicDescription";
 import PythonTopicDescription from "../Screens/Description/PythonTopicDescription";
+import { CollegeDetails } from "../Screens/CollegeDetails";
 
 const Stack = createNativeStackNavigator();
 function AppNavigation() {
@@ -39,6 +40,7 @@ function AppNavigation() {
                 <Stack.Screen name="PharmaTopic" component={PharmaTopicList} options={{ headerShown: false }} />
                 <Stack.Screen name="PythonDescription" component={PythonTopicDescription} options={{ headerShown: false }} />
                 <Stack.Screen name="JavaDescription" component={JavaTopicDescription} options={{ headerShown: false }} />
+                <Stack.Screen name="CollegeDetails" component={CollegeDetails} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     )

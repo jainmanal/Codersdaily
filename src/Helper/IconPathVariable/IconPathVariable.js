@@ -13,6 +13,7 @@ const IconPathVariable = {
     Dot  : require('../../Assets/icon/dot.png'),   
     Location  : require('../../Assets/icon/pin.png'),   
     Search  : require('../../Assets/icon/search.png'),   
+    Download  : require('../../Assets/icon/download.png'),   
 
 }
 
