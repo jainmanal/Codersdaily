@@ -32,7 +32,9 @@ export const styles = StyleSheet.create({
         color: Colors.black,
     },
     subContainer: {
+        // flex:1,
         padding: 10,
+        // height : SCREEN_HEIGHT * 0.3,
         width: SCREEN_WIDTH * 0.4,
         backgroundColor: Colors.White,
         marginHorizontal: 10,
@@ -72,8 +74,9 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         justifyContent: 'space-between',
-        marginTop: 10
-
+        marginTop: 28,
+        // bottom:0,
+        // position:'absolute'
     },
     buttonText: {
         color: Colors.White,

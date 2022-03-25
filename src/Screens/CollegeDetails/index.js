@@ -10,30 +10,53 @@ export const CollegeDetails = () => {
 
     const [show, setShow] = useState(false)
 
-    const DATA = [
-        { id: 0, heading: 'Introduction ' },
-        { id: 1, heading: 'General Information ' },
-        { id: 2, heading: 'Courses Offered ' },
-        { id: 3, heading: 'Branches offered inBTECH' },
-        { id: 4, heading: 'Facilities in Campus ' },
-        { id: 5, heading: 'Jee Advance cut-off in 2020 IIT Bombay ' },
-        { id: 6, heading: 'IIT Bombay top Alumini' },
-    ]
+    const [DATA, setData] = useState([
+        { id: 0, heading: 'Introduction ', selected: false, },
+        { id: 1, heading: 'General Information ', selected: false, },
+        { id: 2, heading: 'Courses Offered ', selected: false, },
+        { id: 3, heading: 'Branches offered inBTECH', selected: false, },
+        { id: 4, heading: 'Facilities in Campus ', selected: false, },
+        { id: 5, heading: 'Jee Advance cut-off in 2020 IIT Bombay ', selected: false, },
+        { id: 6, heading: 'IIT Bombay top Alumini', selected: false, },
+    ])
+
+    const taskHandle = (id) => {
+        let arr = [];
+        DATA.map((item, index) => {
+            if (index === id) {
+                setShow(true)
+                item.selected = !item.selected
+            }
+            arr.push(item);
+        })
+        setData(arr)
+
+    }
+
+    //     let arr = [];
+    //     DATA.map((item, index) => {
+    //       let obj = item;
+    //       if (index === ind) {
+    //         obj.selected = !obj.selected;
+    //       }
+    //       arr.push(obj);
+    //     });
+    //     setData(arr);
+    //   };
 
     const renderItem = ({ item }) => (
         <View style={styles.listContainer}>
             <Text style={styles.headings}>{item.heading}</Text>
             {
                 show == false ?
-                    <TouchableOpacity onPress={() => setShow(true)}>
+                    <TouchableOpacity onPress={() => taskHandle(item.id)}>
                         <Image source={IconPathVariable.Down} style={styles.icon1} />
                     </TouchableOpacity>
                     :
-                    <TouchableOpacity onPress={()=> setShow(false)}>
+                    <TouchableOpacity onPress={() => setShow(false)}>
                         <Image source={IconPathVariable.Up} style={styles.icon1} />
                     </TouchableOpacity>
             }
-
         </View>
     )
 
@@ -67,7 +90,8 @@ export const CollegeDetails = () => {
                     <View>
                         <FlatList
                             // horizontal={true}
-                            scrollEnabled
+                            // scrollEnabled
+                            style={{marginBottom: 800}}
                             data={DATA}
                             renderItem={renderItem}
                         />

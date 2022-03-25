@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from '../../../Helper/Colors.js';
+import { SCREEN_WIDTH } from '../../../Helper/DeviceDimentions/index.js';
 
 export const styles = StyleSheet.create({
     maincontainer: {
         marginTop: 60,
         padding: 10,
-        marginBottom: 515
+        // marginBottom: 515,
+                marginBottom: 270
     },
     subContainer1: {
         backgroundColor: Colors.White,
@@ -70,7 +72,9 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 10,
         height: 50,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        marginLeft: 15,
+        width: SCREEN_WIDTH * 0.8
     },
     dropdownContainer: {
         // flexDirection: 'row',
@@ -86,5 +90,10 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         // borderRadius: 0,
         // width: '99%',
+    },
+    menu:{
+        height: 32,
+        width: 32,
+        tintColor: Colors.AppColor
     }
 })

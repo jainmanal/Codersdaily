@@ -52,14 +52,14 @@ export const CollegesScreen = () => {
         },
     ]
 
-    const handleNavigation = () =>{
+    const handleNavigation = () => {
         navigation.navigate('CollegeDetails')
     }
 
     const renderItem = ({ item }) => (
 
-        <TouchableOpacity onPress={()=> handleNavigation()}
-         style={styles.subContainer1}>
+        <TouchableOpacity onPress={() => handleNavigation()}
+            style={styles.subContainer1}>
             <ImageBackground
                 borderTopRightRadius={10}
                 borderTopLeftRadius={10}
@@ -79,18 +79,24 @@ export const CollegesScreen = () => {
         <View>
             <CustomHeader />
             <View style={styles.maincontainer}>
-                <View style={styles.textBox}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Search university..."
-                        placeholderTextColor={Colors.TextGrey}
-                    />
+                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
                     <TouchableOpacity>
-                        <Image source={IconPathVariable.Search} style={styles.icon1} />
+                        <Image source={IconPathVariable.Filter} style={styles.menu} />
                     </TouchableOpacity>
+                    <View style={styles.textBox}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Search university..."
+                            placeholderTextColor={Colors.TextGrey}
+                        />
+                        <TouchableOpacity>
+                            <Image source={IconPathVariable.Search} style={styles.icon1} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
-                <View style={styles.dropdownContainer}>
+
+                {/* <View style={styles.dropdownContainer}>
                     <DropDownPicker
                         open={open}
                         value={value}
@@ -118,11 +124,11 @@ export const CollegesScreen = () => {
                         }}
 
                     />
-                </View>
+                </View> */}
                 <View
                 >
                     <FlatList
-                        style={{ marginTop: -80 }}
+                        // style={{ marginTop: -80 }}
                         data={DATA1}
                         renderItem={renderItem}
                     />

@@ -1,13 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { styles } from './styles';
+import IconPathVariable from '../../../Helper/IconPathVariable/IconPathVariable';
+import ImagePathVariable from '../../../Helper/ImagePathVariable/ImagePathVariable';
 import { CustomHeader } from '../../../Component/CustomHeader';
 
-export const DjangoTopicList = () => {
+export const DjangoTopicList = ({ navigation }) => {
     return (
         <View>
             <View>
-                <CustomHeader />
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                        <Image source={IconPathVariable.Menu} style={styles.menu} />
+                    </TouchableOpacity>
+                    <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+                </View>
                 <View style={styles.maincontainer}>
                     <Text style={styles.heading}>Django Tutorial</Text>
                 </View>

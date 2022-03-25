@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     mainContainer: {
         marginTop: 70,
         paddingHorizontal: 10,
-        // marginBottom: 70
+        // marginBottom: 780
     },
     topContainer: {
         flexDirection: 'row',

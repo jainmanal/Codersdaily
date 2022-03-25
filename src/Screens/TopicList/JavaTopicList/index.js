@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import { styles } from "./styles";
 import IconPathVariable from "../../../Helper/IconPathVariable/IconPathVariable";
+import ImagePathVariable from "../../../Helper/ImagePathVariable/ImagePathVariable";
 import { CustomHeader } from "../../../Component/CustomHeader";
 
-export const JavaTopicList = ({navigation}) => {
+const JavaTopicList = ({ navigation }) => {
 
     const [show, setShow] = useState(false)
 
@@ -34,7 +35,7 @@ export const JavaTopicList = ({navigation}) => {
             {
                 show == true ?
                     <View style={styles.hiddenSheet}>
-                        <TouchableOpacity onPress={()=> navigation.navigate("JavaDescription")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("JavaDescription")}>
                             <Text style={styles.tabText}>{item.subHeading}</Text>
                         </TouchableOpacity>
                     </View>
@@ -46,10 +47,14 @@ export const JavaTopicList = ({navigation}) => {
 
     return (
         <View>
-            <CustomHeader />
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Image source={IconPathVariable.Menu} style={styles.menu} />
+                </TouchableOpacity>
+                <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+            </View>
             <View style={styles.maincontainer}>
                 <Text style={styles.heading}>Java Tutorial</Text>
-
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -58,3 +63,4 @@ export const JavaTopicList = ({navigation}) => {
         </View>
     )
 }
+export default JavaTopicList;

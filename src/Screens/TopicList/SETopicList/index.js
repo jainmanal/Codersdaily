@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { CustomHeader } from '../../../Component/CustomHeader';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import IconPathVariable from '../../../Helper/IconPathVariable/IconPathVariable';
+import ImagePathVariable from '../../../Helper/ImagePathVariable/ImagePathVariable';
 import { styles } from './styles';
 
-export const SETopicList = () => {
+export const SETopicList = ({navigation}) => {
 
     const DATA = [
         {
@@ -29,7 +30,12 @@ export const SETopicList = () => {
 
     return (
         <View>
-            <CustomHeader />
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Image source={IconPathVariable.Menu} style={styles.menu} />
+                </TouchableOpacity>
+                <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+            </View>
             <View style={styles.maincontainer}>
                 <Text style={styles.heading}>Selenium Automation Testing Tutorial</Text>
                 <FlatList

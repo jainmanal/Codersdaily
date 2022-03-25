@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { CustomHeader } from '../../../Component/CustomHeader';
+import ImagePathVariable from '../../../Helper/ImagePathVariable/ImagePathVariable';
 import IconPathVariable from '../../../Helper/IconPathVariable/IconPathVariable';
 import { _taskHandle } from 'react-native/Libraries/Interaction/Batchinator';
 
-export const PharmaTopicList = () => {
+export const PharmaTopicList = ({navigation}) => {
 
     const [show1, setShow1] = useState(false);
     const [bgColor, setBgColor] = useState("#fff")
@@ -22,7 +23,7 @@ export const PharmaTopicList = () => {
     ]
 
     const handleBgColor = () => {
-       setBgColor('orange')
+        setBgColor('orange')
     }
 
     const renderItem = ({ item }) => (
@@ -43,7 +44,7 @@ export const PharmaTopicList = () => {
             {
                 show1 == true ?
                     <View style={styles.hiddenSheet}>
-                        <TouchableOpacity style={{backgroundColor: bgColor, paddingHorizontal: 6}} onPress={()=> handleBgColor()}>
+                        <TouchableOpacity style={{ backgroundColor: bgColor, paddingHorizontal: 6 }} onPress={() => handleBgColor()}>
                             <Text style={styles.tabText}>{item.subHeading}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
@@ -65,7 +66,12 @@ export const PharmaTopicList = () => {
     return (
         <View>
             <View>
-                <CustomHeader />
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                        <Image source={IconPathVariable.Menu} style={styles.menu} />
+                    </TouchableOpacity>
+                    <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+                </View>
                 <View style={styles.maincontainer}>
                     <Text style={styles.heading}>Pharmacovigilance Tutorial</Text>
 

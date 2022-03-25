@@ -14,6 +14,8 @@ const IconPathVariable = {
     Location  : require('../../Assets/icon/pin.png'),   
     Search  : require('../../Assets/icon/search.png'),   
     Download  : require('../../Assets/icon/download.png'),   
+    Menu  : require('../../Assets/icon/menus.png'),   
+    Filter  : require('../../Assets/icon/filter.png'),   
 
 }
 

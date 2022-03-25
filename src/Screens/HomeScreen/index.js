@@ -10,7 +10,7 @@ export const HomeScreen = () => {
     const navigation = useNavigation();
 
     const DATA = [
-        { id: 0, image: ImagePathVariable.SE, title: 'Selenium Automation Testing', description: 'Selenium is a popular open-source web-based automation tool.', button: 'Learn' },
+        { id: 0, image: ImagePathVariable.SE, title: 'SE Testing', description: 'Selenium is a popular open-source web-based automation tool.', button: 'Learn' },
         { id: 1, image: ImagePathVariable.DJ, title: 'Django', description: 'Django', button: 'Learn' },
         { id: 2, image: ImagePathVariable.Pharma, title: 'Pharmacovigilance', description: 'Pharmacovigilance is an emerging field for life science graduates', button: 'Learn' },
         { id: 3, image: ImagePathVariable.Python, title: 'Python', description: 'Python is an interpreted high-level general-purpose programming language.', button: 'Learn' },
