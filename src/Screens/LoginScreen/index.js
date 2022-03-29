@@ -1,19 +1,55 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ToastAndroid } from 'react-native';
 import { styles } from "./styles";
 import ImagePathVariable from "../../Helper/ImagePathVariable/ImagePathVariable";
 import IconPathVariable from "../../Helper/IconPathVariable/IconPathVariable";
 import { CustomEmailTextInput } from "../../Component/CustomEmailTextInput";
 import { CustomTextInput } from "../../Component/CustomTextInput";
 import LinearGradient from "react-native-linear-gradient";
+import { LoginApi } from "../../Helper/API_Call/API_Call";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { saveUserToken } from "../../Redux/Actions/action";
 
 export const LoginScreen = ({ navigation }) => {
 
-    const [Email, setEmail] = useState('')
+    const [UserName, setUserName] = useState('')
     const [Password, setPassword] = useState('')
 
+    const dispatch = useDispatch()
+
     const HandleLogin = () => {
-        navigation.navigate('BottomTab')
+        if (!UserName) {
+            ToastAndroid.show('Please enter User Name',
+                ToastAndroid.SHORT)
+        }
+        else if (!Password) {
+            ToastAndroid.show('Please enter Password',
+                ToastAndroid.SHORT)
+        }
+        else {
+            LoginApi(UserName, Password).then(async (resp) => {
+                let response = resp;
+                // console.log('Login Response==', response.data)
+                if (response.status == 200) {
+                    const token = response.data.access
+                    // console.log('detail', token)
+                    await AsyncStorage.setItem('token', token)
+                    dispatch(saveUserToken(token));
+                    navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
+                    ToastAndroid.show('Logged in Successfully',
+                        ToastAndroid.SHORT)
+                }
+                else {
+                    ToastAndroid.show(response.data.detail,
+                        ToastAndroid.SHORT)
+                }
+            }).catch(e => {
+                console.log('error', e)
+                ToastAndroid.show(e,
+                    ToastAndroid.SHORT)
+            })
+        }
     }
 
     return (
@@ -26,12 +62,12 @@ export const LoginScreen = ({ navigation }) => {
                     <CustomEmailTextInput
                         autoCapitalize='none'
                         keyboardType='email-address'
-                        MaterialCommunityIcons="email"
-                        onSubmitEditing={() => inputEamilId.current.focus()}
+                        IconName={'account'}
+                        // MaterialCommunityIcons="lock"
                         TextInputProps={{
-                            placeholder: "Your Email",
-                            onChangeText: (text) => setEmail(text),
-                            value: Email,
+                            placeholder: "User Name",
+                            onChangeText: (text) => setUserName(text),
+                            value: UserName,
                             returnKeyType: "next",
                         }}
                     />

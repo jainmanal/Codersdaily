@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { LogBox } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,42 +10,52 @@ import IconPathVariable from '../../Helper/IconPathVariable/IconPathVariable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import { SCREEN_WIDTH } from '../../Helper/DeviceDimentions';
+import { getCoursesApi } from '../../Helper/API_Call/API_Call';
 
 export const HomeScreen = () => {
     const navigation = useNavigation();
 
-    const DATA = [
-        { id: 0, image: ImagePathVariable.SE, title: 'SE Testing', nav: 'SETopic', description: 'Selenium is a popular open-source web-based automation tool.', button: 'Learn' },
-        { id: 1, image: ImagePathVariable.DJ, title: 'Django', nav: 'DjangoTopic', description: 'Django', button: 'Learn' },
-        { id: 2, image: ImagePathVariable.Pharma, title: 'Pharmacovigilance', nav: 'PharmaTopic', description: 'Pharmacovigilance is an emerging field for life science graduates', button: 'Learn' },
-        { id: 3, image: ImagePathVariable.Python, title: 'Python', nav: 'PythonTopic', description: 'Python is an interpreted high-level general-purpose programming language.', button: 'Learn' },
-        { id: 4, image: ImagePathVariable.Java, title: 'Java', nav: 'javaTopic', description: 'Java is an object-oriented, class-based, concurrent, secured and general-purpose computer-programming language.', button: 'Learn' },
-    ]
+    const [DATA, setDATA] = useState([]);
 
-    const DATA1 = [
-        { id: 0, image: ImagePathVariable.College1, title: 'Indian Institute of Technology Bombay' },
-        { id: 1, image: ImagePathVariable.College2, title: 'Jaypee University of Engineering and Technology - Guna' },
-        { id: 2, image: ImagePathVariable.College1, title: 'Indian Institute of Technology Bombay' },
-    ]
+    useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [])
 
-    const handleNavigation = async (item) => {
-        console.log('item==', item)
-        navigation.navigate(item.nav);
-        const value = item.nav;
-        console.log('value======', value)
-        try {
-            await AsyncStorage.setItem('subName', value)
-        } catch (error) {
-            console.log(error)
-        }
+    useEffect(() => {
+        getCourseList()
+    }, [])
+
+    const getCourseList = async _ => {
+        getCoursesApi()
+            .then(async res => {
+                let response = res;
+                // console.log('List', response.data)
+                setDATA(response.data.results)
+            }).catch(e => {
+                let error = e;
+                console.log(error)
+            })
     }
 
-    const renderItem = ({ item }) => (
+    const handleNavigation = async (item) => {
+        navigation.navigate('CourseDetail')
+        // console.log('item==', item)
+        // navigation.navigate(item.nav);
+        // const value = item.nav;
+        // console.log('value======', value)
+        // try {
+        //     await AsyncStorage.setItem('subName', value)
+        // } catch (error) {
+        //     console.log(error)
+        // }
+    }
+
+    const renderCourseList = ({ item }) => (
         <TouchableOpacity onPress={() => handleNavigation(item)}
             style={styles.subContainer}>
-            <Image source={item.image} style={styles.icon} />
+            <Image source={{ uri: item.logo_img }} style={styles.icon} />
             <View style={[styles.textContainer, { marginTop: 30 }]}>
-                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.title}>{item.name}</Text>
                 <Text style={styles.lesson}>20 Lessons</Text>
             </View>
             <View >
@@ -92,8 +103,8 @@ export const HomeScreen = () => {
                 style={styles.header}>
                 <View style={[styles.headerContent, { justifyContent: 'space-between' }]}>
                     <View>
-                        <Text style={[styles.font, { fontSize: 25 }]}>Hello ,</Text>
-                        <Text style={[styles.font, { fontSize: 20 }]}>Pratibha</Text>
+                        <Text style={[styles.font, { fontSize: 25 }]}>Hello,</Text>
+                        <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>Pratibha</Text>
                     </View>
                     <View style={styles.iconContainer}>
                         <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
@@ -117,10 +128,12 @@ export const HomeScreen = () => {
                             </TouchableOpacity>
                         </View>
                         <FlatList
+                            scrollEnabled={false}
                             style={{ alignSelf: 'center', }}
                             numColumns={2}
                             data={DATA}
-                            renderItem={renderItem}
+                            renderItem={renderCourseList}
+                            keyExtractor={item => item.id.toString()}
                         />
                     </View>
                     {/* <View style={styles.container}>

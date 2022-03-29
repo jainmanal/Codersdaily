@@ -11,27 +11,35 @@ export const styles = StyleSheet.create({
     subContainer: {
         padding: 10,
         width: SCREEN_WIDTH * 0.9,
-        height: SCREEN_HEIGHT * 0.5,
+        // height: SCREEN_HEIGHT * 0.5,
         backgroundColor: Colors.White,
         marginHorizontal: 10,
         borderRadius: 10,
         marginVertical: 10,
-    
+        elevation: 10,
+        paddingHorizontal: 12
     },
     icon: {
-        height: 250,
-        width: 250,
+        height: 180,
+        width: 180,
         resizeMode: 'contain',
         alignSelf: 'center'
     },
     title: {
-        fontSize: 20,
+        fontSize: 22,
         color: Colors.black,
         fontWeight: 'bold',
         textAlign: 'center'
     },
+    descContainer: {
+        marginVertical: 10,
+        // flexDirection:'row',
+        alignItems: 'center'
+    },
     description: {
-
+        fontSize: 18,
+        // textAlign: 'center',
+        color: Colors.TextGrey,
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -56,4 +64,20 @@ export const styles = StyleSheet.create({
         width: 20,
         tintColor: Colors.White
     },
+    botomContainer: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        backgroundColor: Colors. AppColor,
+        padding:10,
+        borderRadius: 10,
+        alignSelf:'flex-end',
+        paddingHorizontal: 15
+        // padding: 10,
+        // marginVertical:10,
+    },
+    text:{
+        color: Colors.White,
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
 })

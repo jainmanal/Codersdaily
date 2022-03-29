@@ -14,7 +14,7 @@ const CustomTextInput = ({ IconName, IconColor, IconSize, TextInputProps, showRe
                 null
                 :
                 
-                <MaterialCommunityIcons name={IconName ? IconName : 'lock'} color={IconColor ? IconColor :  Colors.AppColor} size={IconSize ? IconSize : 20} />
+                <MaterialCommunityIcons name={IconName ? IconName : 'lock'} color={IconColor ? IconColor :  Colors.AppColor} size={IconSize ? IconSize : 24} />
             }
             <TextInput
                onSubmitEditing={onSubmitEditing}
@@ -22,7 +22,7 @@ const CustomTextInput = ({ IconName, IconColor, IconSize, TextInputProps, showRe
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onChangeText={onChangeText}
-                style={HideIcon ? { width: SCREEN_WIDTH * 0.8 } : { width: SCREEN_WIDTH * 0.7 }}
+                style={[HideIcon ? { width: SCREEN_WIDTH * 0.8 } : { width: SCREEN_WIDTH * 0.7 },{fontSize: 16}]} 
                 {...TextInputProps}
             />
         </View>

@@ -14,7 +14,7 @@ const CustomEmailTextInput = ({ IconName, IconColor, Input,IconSize, TextInputPr
                 null
                 :
     
-                <MaterialCommunityIcons name={IconName ? IconName : 'email'} color={IconColor ? IconColor :  Colors.AppColor} size={IconSize ? IconSize : 20} />
+                <MaterialCommunityIcons name={IconName ? IconName : 'email'} color={IconColor ? IconColor :  Colors.AppColor} size={IconSize ? IconSize : 24} />
           
            }
             <TextInput
@@ -23,7 +23,7 @@ const CustomEmailTextInput = ({ IconName, IconColor, Input,IconSize, TextInputPr
                autoCapitalize='none'
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                style={HideIcon ? { width: SCREEN_WIDTH * 0.8 } : { width: SCREEN_WIDTH * 0.7 }}
+                style={[HideIcon ? { width: SCREEN_WIDTH * 0.8 } : { width: SCREEN_WIDTH * 0.7 }, {fontSize: 16}]}
                 {...TextInputProps}
             />
         </View>
