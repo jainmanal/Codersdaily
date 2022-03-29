@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     container: {
-        marginTop: 30
+        marginTop: 20
     },
     login: {
-        fontSize: 38,
+        fontSize: 32,
         fontWeight: 'bold',
         color: Colors.black,
         marginVertical: 10

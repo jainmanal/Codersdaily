@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from "./styles";
 import ImagePathVariable from "../../Helper/ImagePathVariable/ImagePathVariable";
 import IconPathVariable from "../../Helper/IconPathVariable/IconPathVariable";
@@ -17,11 +17,12 @@ export const SignUpScreen = ({ navigation }) => {
     }
 
     return (
+        <ScrollView>
         <View style={styles.mainContainer}>
             <Image source={ImagePathVariable.AppLogo} style={styles.logo}/>
             <View style={styles.container}>
                 <Text style={styles.login}>Create Account</Text>
-                <View style={{ marginTop: 50 }}>
+                <View style={{ marginTop: 20 }}>
                     <CustomEmailTextInput
                         autoCapitalize='none'
                         keyboardType='email-address'
@@ -29,12 +30,42 @@ export const SignUpScreen = ({ navigation }) => {
                         // MaterialCommunityIcons="lock"
                         onSubmitEditing={() => inputEamilId.current.focus()}
                         TextInputProps={{
-                            placeholder: "Full Name",
+                            placeholder: "First Name",
                             onChangeText: (text) => setEmail(text),
                             value: Email,
                             returnKeyType: "next",
                         }}
                     />
+                    <View style={{ marginTop: 30 }}>
+                    <CustomEmailTextInput
+                        autoCapitalize='none'
+                        keyboardType='email-address'
+                        IconName={'account'}
+                        // MaterialCommunityIcons="lock"
+                        onSubmitEditing={() => inputEamilId.current.focus()}
+                        TextInputProps={{
+                            placeholder: "Last Name",
+                            onChangeText: (text) => setEmail(text),
+                            value: Email,
+                            returnKeyType: "next",
+                        }}
+                    />
+                    </View>
+                    <View style={{ marginTop: 30 }}>
+                    <CustomEmailTextInput
+                        autoCapitalize='none'
+                        keyboardType='email-address'
+                        IconName={'account'}
+                        // MaterialCommunityIcons="lock"
+                        onSubmitEditing={() => inputEamilId.current.focus()}
+                        TextInputProps={{
+                            placeholder: "User Name",
+                            onChangeText: (text) => setEmail(text),
+                            value: Email,
+                            returnKeyType: "next",
+                        }}
+                    />
+                    </View>
                     <View style={{ marginTop: 30 }}>
                         <CustomEmailTextInput
                             autoCapitalize='none'
@@ -88,5 +119,6 @@ export const SignUpScreen = ({ navigation }) => {
                 </View>
             </View>
         </View>
+        </ScrollView>
     )
 }

@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
         marginTop: 60,
     },
     heading: {
-        fontSize: 28,
+        fontSize: 22,
         color: Colors.black,
         fontWeight: 'bold',
-        textAlign: 'center',
+        // textAlign: 'center',
         marginVertical: 10
     },
     container: {
@@ -36,5 +36,40 @@ export const styles = StyleSheet.create({
         height: 42,
         width: 42,
         tintColor: '#fcd42c'
+    },
+    image: {
+        height: 250,
+        width: 400,
+        resizeMode: 'contain'
+    },
+    subContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    icon: {
+        height: 20,
+        width: 20,
+        tintColor: Colors.AppColor
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: Colors.black,
+        marginLeft: 20
+    },
+    iconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 8,
+        backgroundColor: '#fbdf8d',
+        borderRadius: 20,
+    },
+    txt: {
+        fontWeight: 'bold',
+        color: Colors.black
+    },
+    name: {
+        color: Colors.AppColor,
+        fontWeight: 'bold'
     },
 })

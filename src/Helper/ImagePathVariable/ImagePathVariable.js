@@ -9,7 +9,7 @@ const ImagePathVariable = {
     College1 : require('../../Assets/image/college1.jpg'),  
     College2 : require('../../Assets/image/college2.jpg'),  
     CollegeLogo1 : require('../../Assets/image/collegeLogo1.png'),  
-
+AppIntroLogo: require('../../Assets/image/MicrosoftTeams-image.png')
 }
 
 export default ImagePathVariable

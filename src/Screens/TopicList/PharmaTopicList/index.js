@@ -67,8 +67,8 @@ export const PharmaTopicList = ({navigation}) => {
         <View>
             <View>
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                        <Image source={IconPathVariable.Menu} style={styles.menu} />
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image source={IconPathVariable.Back} style={styles.menu} />
                     </TouchableOpacity>
                     <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
                 </View>

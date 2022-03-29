@@ -17,112 +17,43 @@ import { PharmaTopicList } from "../Screens/TopicList/PharmaTopicList";
 import JavaTopicDescription from "../Screens/Description/JavaTopicDescription";
 import PythonTopicDescription from "../Screens/Description/PythonTopicDescription";
 import { CollegeDetails } from "../Screens/CollegeDetails";
-import { SEDrawer } from "../Component/CustomDrawer/SEDrawer";
-import { DjangoDrawer } from "../Component/CustomDrawer/DjangoDrawer";
-import { JavaDrawer } from "../Component/CustomDrawer/JavaDrawer";
-import { PythonDrawer } from "../Component/CustomDrawer/PythonDrawer";
-import { PharmaDrawer } from "../Component/CustomDrawer/PharmaDrawer";
 import { MyCustomDrawer } from "../Component/CustomDrawer/MyCustomDrawer";
 import JavaTopicList from "../Screens/TopicList/JavaTopicList";
 import { SCREEN_WIDTH } from "../Helper/DeviceDimentions";
+import PythonTopicList from "../Screens/TopicList/PythonTopicList";
+import { AppIntroScreen } from "../Screens/AppIntroScreen";
 
 
-const Drawer = createDrawerNavigator();
-// function SETopicDrawer() {
+// const Drawer = createDrawerNavigator();
+
+// function MyDrawer(props) {
+//   // console.log(props, 'peopaaaa')
+//   var componentName
+//   const name = props.route.name
+//   // console.log('name', name)
+
+//   if (name == 'SETopic') {
+//     componentName = SETopicList
+//   } else if (name == 'PharmaTopic') {
+//     componentName = PharmaTopicList
+//   } else if (name == 'javaTopic') {
+//     componentName = JavaTopicList
+//   } else if (name == 'DjangoTopic') {
+//     componentName = DjangoTopicList
+//   } else if (name == 'PythonTopic') {
+//     componentName = PythonTopicList
+//   }
+
 //   return (
-//     <Drawer.Navigator drawerContent={(props) => <SEDrawer {...props} />}>
-//       <Drawer.Screen name="SETopic" component={SETopicList}
+//     <Drawer.Navigator screenOptions={{ drawerStyle: { width: SCREEN_WIDTH * 0.8 } }}
+//       drawerContent={(props) => <MyCustomDrawer {...props} />}
+//     >
+//       <Drawer.Screen name={props.route.name} component={componentName}
 //         options={{ headerShown: false }}
 //       />
 //     </Drawer.Navigator>
 //   );
 // }
-
-// function DjangoTopicDrawer() {
-//   return (
-//     <Drawer.Navigator drawerContent={(props) => <DjangoDrawer {...props} />}>
-//       <Drawer.Screen name="DjangoTopic" component={DjangoTopicList}
-//         options={{ headerShown: false }}
-//       />
-//     </Drawer.Navigator>
-//   );
-// }
-
-// function JavaTopicDrawer() {
-//   return (
-//     <Drawer.Navigator drawerContent={(props) => <JavaDrawer {...props} />}>
-//       <Drawer.Screen name="javaTopic" component={JavaTopicList}
-//         options={{ headerShown: false }}
-//       />
-//     </Drawer.Navigator>
-//   );
-// }
-
-// function PythonTopicDrawer() {
-//   return (
-//     <Drawer.Navigator drawerContent={(props) => <PythonDrawer {...props} />}>
-//       <Drawer.Screen name="PythonTopic" component={PythonTopicList}
-//         options={{ headerShown: false }}
-//       />
-//     </Drawer.Navigator>
-//   );
-// }
-
-function MyDrawer(props) {
-  console.log(props, 'peopaaaa')
-  var componentName
-
-  const name = props.route.name
-  console.log('name', name)
-
-  if (name == 'SETopic') {
-    componentName = SETopicList
-  } else if (name == 'PharmaTopic') {
-    componentName = PharmaTopicList
-  } else if (name == 'javaTopic') {
-    componentName =  JavaTopicList
-  } else if (name == 'DjangoTopic') {
-    componentName = DjangoTopicList
-  } else if (name == 'PythonTopic') {
-    componentName = PythonTopicList
-  }
-//   const PythonData = [
-//     { id: 0, name: 'hgjgkjh' },
-//     { id: 1, name: 'hgjgkjh' },
-//     { id: 2, name: 'hgjgkjh' },
-//     { id: 3, name: 'hgjgkjh' },
-
-// ]
-
-// const SEData = [
-//     { id: 0, name: 'hgjgkjh' },
-//     { id: 1, name: 'hgjgkjh' },
-//     { id: 2, name: 'hgjgkjh' },
-//     { id: 3, name: 'hgjgkjh' },
-
-// ]
-  return (
-    <Drawer.Navigator screenOptions={{drawerStyle:{width: SCREEN_WIDTH * 0.8}}}
-      drawerContent={(props) => <MyCustomDrawer {...props}/>}
-    >
-      <Drawer.Screen name={props.route.name} component={componentName}
-        options={{ headerShown: false }} 
-      />
-      {/* <Drawer.Screen name={props.route.name} component={SETopicList}
-        options={{ headerShown: false }}
-      />
-      //  <Drawer.Screen name={props.route.name} component={JavaTopicList}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen name={props.route.name} component={DjangoTopicList}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen name={props.route.name} component={PythonTopicList}
-        options={{ headerShown: false }} 
-      /> */}
-    </Drawer.Navigator>
-  );
-}
 
 const Stack = createNativeStackNavigator();
 function AppNavigation() {
@@ -130,6 +61,7 @@ function AppNavigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="AppIntro" component={AppIntroScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
         <Stack.Screen name="BottomTab" component={BottomTab} options={{ headerShown: false }} />
@@ -139,19 +71,19 @@ function AppNavigation() {
         <Stack.Screen name="ProfileTab" component={ProfileScreen} options={{ headerShown: false }} />
         <Stack.Screen name="CourseDetail" component={CourseDetail} options={{ headerShown: false }} />
 
-        <Stack.Screen name="PythonTopic" component={MyDrawer}
+        <Stack.Screen name="PythonTopic" component={PythonTopicList}
           options={{ headerShown: false }} />
 
-        <Stack.Screen name="SETopic" component={MyDrawer}
+        <Stack.Screen name="SETopic" component={SETopicList}
           options={{ headerShown: false, }} />
 
-        <Stack.Screen name="DjangoTopic" component={MyDrawer}
+        <Stack.Screen name="DjangoTopic" component={DjangoTopicList}
           options={{ headerShown: false }} />
 
-        <Stack.Screen name="javaTopic" component={MyDrawer}
+        <Stack.Screen name="javaTopic" component={JavaTopicList}
           options={{ headerShown: false }} />
 
-        <Stack.Screen name="PharmaTopic" component={MyDrawer}
+        <Stack.Screen name="PharmaTopic" component={PharmaTopicList}
           options={{ headerShown: false }} />
 
         <Stack.Screen name="PythonDescription" component={PythonTopicDescription} options={{ headerShown: false }} />

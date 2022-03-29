@@ -357,10 +357,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native';
 import IconPathVariable from '../../../Helper/IconPathVariable/IconPathVariable';
+import ImagePathVariable from '../../../Helper/ImagePathVariable/ImagePathVariable';
 import { CustomHeader } from '../../../Component/CustomHeader';
 import { styles } from '../../Description/PythonTopicDescription/styles';
 
-const PythonTopicList = () => {
+const PythonTopicList = ({ navigation }) => {
 
     const DATA = [
         {
@@ -415,7 +416,12 @@ const PythonTopicList = () => {
 
     return (
         <View style={styles.main}>
-            <CustomHeader />
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image source={IconPathVariable.Back} style={styles.menu} />
+                </TouchableOpacity>
+                <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+            </View>
             <ScrollView>
                 <View style={styles.mainContainer}>
                     <Text style={styles.heading}>Python Tutorial</Text>
@@ -450,4 +456,4 @@ const PythonTopicList = () => {
         </View>
     )
 }
-
+export default PythonTopicList;

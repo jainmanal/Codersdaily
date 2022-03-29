@@ -4,51 +4,83 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../Helper/DeviceDimentions/index
 
 export const styles = StyleSheet.create({
     maincontainer: {
-        marginTop: 60,
-        marginBottom: 80
+        // marginTop: 60,
+        // marginBottom: 980,
+        marginBottom: 220,
+        // marginBottom: 640,
+        
+
     },
-    bgImage: {
+    header: {
         padding: 15,
-        height: SCREEN_HEIGHT * 0.3,  
+        borderRadius: 20,
+        paddingHorizontal: 25,
+        shadowColor: Colors.black,
+        // shadowOffset: { width: 0, height: 9 },
+        shadowOpacity: 8,
+        shadowRadius: 1,
+        height: 160,
+        elevation:10,
+
     },
-    heading: {
-        marginTop: 90,
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: Colors.AppColor
+    headerContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    description: {
+    font: {
         color: Colors.White,
+        fontWeight: 'bold'
+    },
+    iconContainer: {
+        backgroundColor: '#fbdf8d',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderRadius: 20
+    },
+    bellIcon: {
+        height: 20,
+        width: 20
+    },
+    textBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 15,
+        backgroundColor: Colors.White,
+        borderRadius: 30,
         marginVertical: 10,
-        fontSize: 16
+        marginTop: 18,
+        elevation: 20,
+    },
+    input: {
+        fontSize: 16,
+        marginLeft: 10
     },
     container: {
-        marginTop: 10,
-        padding: 10
+        // marginTop: 10,
+        padding: 10,
     },
     cource: {
-        fontSize: 28,
-        fontWeight: 'bold',
+        fontSize: 26,
+        fontFamily: 'Manrope-Medium',
         color: Colors.black,
     },
     subContainer: {
-        // flex:1,
         padding: 10,
-        // height : SCREEN_HEIGHT * 0.3,
         width: SCREEN_WIDTH * 0.4,
         backgroundColor: Colors.White,
         marginHorizontal: 10,
-        borderRadius: 10,
-        elevation:10,
-        marginVertical:10
+        borderRadius: 20,
+        elevation: 10,
+        marginVertical: 10
     },
     subContainer1: {
         width: 250,
         backgroundColor: Colors.White,
         marginHorizontal: 10,
         borderRadius: 10,
-        elevation:10,
-        marginVertical:10
+        elevation: 10,
+        marginVertical: 10
     },
     icon: {
         height: 100,
@@ -60,7 +92,10 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         color: Colors.black,
         fontWeight: 'bold',
-        textAlign: 'center'
+        // textAlign: 'center'
+    },
+    lesson: {
+        color: Colors.TextGrey
     },
     description: {
         color: Colors.White,
@@ -96,7 +131,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 8
     },
     text: {
-        color: '#235284',
+        color: '#7856f1',
         fontSize: 16
     },
     image: {

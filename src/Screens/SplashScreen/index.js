@@ -23,7 +23,7 @@ const SplashScreen = ({ navigation }) => {
     };
 
     const checkIfAlreadySignedIn = () => {
-        navigation.navigate('Login');
+        navigation.navigate('AppIntro');
     }
 
     return (

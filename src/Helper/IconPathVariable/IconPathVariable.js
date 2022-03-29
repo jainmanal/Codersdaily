@@ -13,9 +13,14 @@ const IconPathVariable = {
     Dot  : require('../../Assets/icon/dot.png'),   
     Location  : require('../../Assets/icon/pin.png'),   
     Search  : require('../../Assets/icon/search.png'),   
+    Search1  : require('../../Assets/icon/loupe.png'),   
     Download  : require('../../Assets/icon/download.png'),   
     Menu  : require('../../Assets/icon/menus.png'),   
     Filter  : require('../../Assets/icon/filter.png'),   
+    Notification  : require('../../Assets/icon/notification.png'),   
+    Book  : require('../../Assets/icon/open-book.png'),   
+    Lock  : require('../../Assets/icon/open-lock.png'),   
+    Star  : require('../../Assets/icon/star.png'),   
 
 }
 
