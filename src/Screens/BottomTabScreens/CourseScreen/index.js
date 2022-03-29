@@ -5,6 +5,7 @@ import ImagePathVariable from "../../../Helper/ImagePathVariable/ImagePathVariab
 import IconPathVariable from "../../../Helper/IconPathVariable/IconPathVariable";
 import { styles } from "./styles";
 import { useNavigation } from '@react-navigation/native';
+import BottomTab from "../../../Helper/BottomTab/BottomTab";
 
 
 export const CourseScreen = () => {
@@ -52,11 +53,12 @@ export const CourseScreen = () => {
             <CustomHeader />
             <View style={styles.maincontainer}>
                 <FlatList
-                    style={{ marginBottom: 80 }}
+                    style={{ marginBottom: 60 }}
                     data={DATA}
                     renderItem={renderItem}
                 />
             </View>
+            {/* <BottomTab/> */}
         </View>
     )
 }
