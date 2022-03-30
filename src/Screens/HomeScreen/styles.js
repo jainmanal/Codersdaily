@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
     },
     cource: {
         fontSize: 26,
-        fontFamily: 'Manrope-Medium',
+        fontFamily: 'Manrope-ExtraBold',
         color: Colors.black,
     },
     subContainer: {

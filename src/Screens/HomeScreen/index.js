@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView, ToastAndroid } from 'react-native';
 import { LogBox } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -19,6 +19,7 @@ export const HomeScreen = () => {
 
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        LogBox.ignoreLogs(["[react-native-gesture-handler]"]);
     }, [])
 
     useEffect(() => {
@@ -35,6 +36,18 @@ export const HomeScreen = () => {
                 let error = e;
                 console.log(error)
             })
+    }
+
+    const handleLogout = async () => {
+        console.log('logout')
+        // const value = await AsyncStorage.getItem('value')
+        const token = await AsyncStorage.getItem('token')
+        console.log('TOKEN===', token)
+        await AsyncStorage.removeItem('token');
+        // await AsyncStorage.removeItem('value');
+        navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
+        ToastAndroid.show('Logged out',
+            ToastAndroid.SHORT)
     }
 
     const handleNavigation = async (item) => {
@@ -99,7 +112,7 @@ export const HomeScreen = () => {
                     />
                 </View>
             </LinearGradient> */}
-            <ImageBackground source={require('../../Assets/image/image.jpg')} borderRadius={20} resizeMode='cover'
+            <ImageBackground source={require('../../assets/image/image.jpg')} borderRadius={20} resizeMode='cover'
                 style={styles.header}>
                 <View style={[styles.headerContent, { justifyContent: 'space-between' }]}>
                     <View>
@@ -107,7 +120,10 @@ export const HomeScreen = () => {
                         <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>Pratibha</Text>
                     </View>
                     <View style={styles.iconContainer}>
-                        <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
+                        <TouchableOpacity onPress={() => handleLogout()}>
+                            <Image source={IconPathVariable.Logout} style={styles.bellIcon} />
+                        </TouchableOpacity>
+                        {/* <Image source={IconPathVariable.Notification} style={styles.bellIcon} /> */}
                     </View>
                 </View>
                 <View style={[styles.textBox, {}]}>

@@ -27,11 +27,11 @@ const SplashScreen = ({ navigation }) => {
     };
 
     const checkIfAlreadySignedIn = async () => {
-        const Value = await AsyncStorage.getItem('value')
+        // const Value = await AsyncStorage.getItem('value')
         const token = await AsyncStorage.getItem('token')
-        // console.log('splash value', token)
-        if (Value != null && token != null) {
-            dispatch(saveUserDetail(JSON.parse(Value)));
+        console.log('splash value', token)
+        if (token != null) {
+            // dispatch(saveUserDetail(JSON.parse(Value)));
             dispatch(saveUserToken(token))
             navigation.navigate('BottomTab');
         }
