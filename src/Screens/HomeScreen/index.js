@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView, ToastAndroid } from 'react-native';
+import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView, ToastAndroid, ActivityIndicator } from 'react-native';
 import { LogBox } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 import LinearGradient from 'react-native-linear-gradient';
 import { CustomHeader } from '../../Component/CustomHeader';
 import ImagePathVariable from '../../Helper/ImagePathVariable/ImagePathVariable';
@@ -11,16 +12,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import { SCREEN_WIDTH } from '../../Helper/DeviceDimentions';
 import { getCoursesApi } from '../../Helper/API_Call/API_Call';
+import { Colors } from '../../Helper/Colors.js';
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ route }) => {
+
     const navigation = useNavigation();
 
+    // const { UserData } = route.params;
+    //   console.log('param==', UserData)
+    const [userName, setUserName] = useState('')
     const [DATA, setDATA] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         LogBox.ignoreLogs(["[react-native-gesture-handler]"]);
+        fun();
     }, [])
+
+    const fun = async () =>{
+        const value = await AsyncStorage.getItem('UserName')
+        console.log('username', value)
+        setUserName(value)
+        // console.log(value.username)
+    }
+
 
     useEffect(() => {
         getCourseList()
@@ -31,6 +47,7 @@ export const HomeScreen = () => {
             .then(async res => {
                 let response = res;
                 // console.log('List', response.data)
+                setLoading(true)
                 setDATA(response.data.results)
             }).catch(e => {
                 let error = e;
@@ -92,32 +109,14 @@ export const HomeScreen = () => {
 
     return (
         <View style={{ padding: 8, }}>
-            {/* <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                colors={['#fcd02d', '#fbb728',]}
-                style={styles.header}>
-                <View style={[styles.headerContent, { justifyContent: 'space-between' }]}>
-                    <View>
-                        <Text style={[styles.font, { fontSize: 25 }]}>Hello ,</Text>
-                        <Text style={[styles.font, { fontSize: 20 }]}>Pratibha</Text>
-                    </View>
-                    <View style={styles.iconContainer}>
-                        <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
-                    </View>
-                </View>
-                <View style={[styles.textBox, {}]}>
-                    <Image source={IconPathVariable.Search1} style={[styles.bellIcon, { tintColor: '#fcd02d' }]} />
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Search your topic'
-                    />
-                </View>
-            </LinearGradient> */}
             <ImageBackground source={require('../../assets/image/image.jpg')} borderRadius={20} resizeMode='cover'
                 style={styles.header}>
                 <View style={[styles.headerContent, { justifyContent: 'space-between' }]}>
                     <View>
                         <Text style={[styles.font, { fontSize: 25 }]}>Hello,</Text>
-                        <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>Pratibha</Text>
+                        <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>
+                            {/* {userName} */}
+                        </Text>
                     </View>
                     <View style={styles.iconContainer}>
                         <TouchableOpacity onPress={() => handleLogout()}>
@@ -143,14 +142,22 @@ export const HomeScreen = () => {
                                 <Text style={styles.text}>See All</Text>
                             </TouchableOpacity>
                         </View>
-                        <FlatList
-                            scrollEnabled={false}
-                            style={{ alignSelf: 'center', }}
-                            numColumns={2}
-                            data={DATA}
-                            renderItem={renderCourseList}
-                            keyExtractor={item => item.id.toString()}
-                        />
+                        {
+                            loading == false ?
+                                <View style={{ justifyContent: 'center', marginTop: 180 }}>
+                                    <Spinner visible animation="fade" color={Colors.AppColor} />
+                                </View>
+                                :
+                                <FlatList
+                                    scrollEnabled={false}
+                                    style={{ alignSelf: 'center', }}
+                                    numColumns={2}
+                                    data={DATA}
+                                    renderItem={renderCourseList}
+                                    keyExtractor={item => item.id.toString()}
+                                />
+                        }
+
                     </View>
                     {/* <View style={styles.container}>
                         <View style={styles.contain}>

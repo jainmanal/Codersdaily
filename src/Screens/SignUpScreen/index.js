@@ -61,14 +61,20 @@ export const SignUpScreen = ({ navigation }) => {
                 // console.log('Respone====', jsonvalue)
                 if (response.status === 200) {
                     const value = JSON.stringify(response.data.data.user_details)
-                    // console.log('userdetails', value)
+                    console.log('userdetails', value)
+                    const UserName = JSON.stringify(response.data.data.user_details.username)
+                    console.log('usernme', UserName)
+                    await AsyncStorage.setItem('UserName',UserName)
                     const token = response.data.data.token.access;
                     // console.log('Token==', token)
                     await AsyncStorage.setItem('value', value);
                     await AsyncStorage.setItem('token', token);
                     dispatch(saveUserDetail(JSON.parse(value)));
                     dispatch(saveUserToken(token));
-                    navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
+                    //   const  UserData = response.data.data.user_details
+                    //   console.log('User DATA', UserData)
+                    navigation.navigate('BottomTab', { UserData: response.data.data.user_details })
+                    // navigation.reset({ index: 0, routes: [{ name: 'BottomTab', UserData: response.data.data.user_details }] })
                     ToastAndroid.show('Registered Successfully',
                         ToastAndroid.SHORT)
                 }
