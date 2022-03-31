@@ -18,8 +18,8 @@ export const HomeScreen = ({ route }) => {
 
     const navigation = useNavigation();
 
-    // const { UserData } = route.params;
-    //   console.log('param==', UserData)
+    const { UserData } = route.params;
+      console.log('param==', UserData)
     const [userName, setUserName] = useState('')
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -27,18 +27,6 @@ export const HomeScreen = ({ route }) => {
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
         LogBox.ignoreLogs(["[react-native-gesture-handler]"]);
-        fun();
-    }, [])
-
-    const fun = async () =>{
-        const value = await AsyncStorage.getItem('UserName')
-        console.log('username', value)
-        setUserName(value)
-        // console.log(value.username)
-    }
-
-
-    useEffect(() => {
         getCourseList()
     }, [])
 
