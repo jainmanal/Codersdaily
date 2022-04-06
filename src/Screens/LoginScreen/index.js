@@ -82,7 +82,7 @@ export const LoginScreen = ({ navigation }) => {
                 </View>
                 <TouchableOpacity onPress={()=> navigation.navigate('ForgetPassword')}
                 style={styles.contain}>
-                    <Text style={styles.forgot}>FORGOT</Text>
+                    <Text style={styles.forgot}>FORGOT PASSWORD ?</Text>
                 </TouchableOpacity>
 
                 <View style={{ alignSelf: 'flex-end' }}>

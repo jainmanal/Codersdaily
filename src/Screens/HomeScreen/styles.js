@@ -4,23 +4,17 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../Helper/DeviceDimentions/index
 
 export const styles = StyleSheet.create({
     maincontainer: {
-        // marginTop: 60,
-        // marginBottom: 980,
         marginBottom: 220,
-        // marginBottom: 640,
-        
-
     },
     header: {
         padding: 15,
         borderRadius: 20,
         paddingHorizontal: 25,
         shadowColor: Colors.black,
-        // shadowOffset: { width: 0, height: 9 },
         shadowOpacity: 8,
         shadowRadius: 1,
         height: 160,
-        elevation:10,
+        elevation: 10,
 
     },
     headerContent: {
@@ -154,4 +148,8 @@ export const styles = StyleSheet.create({
         color: Colors.black,
         fontWeight: 'bold'
     },
+    rateicon: {
+        height: 20,
+        width: 20
+    }
 })

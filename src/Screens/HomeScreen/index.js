@@ -16,13 +16,10 @@ import { Colors } from '../../Helper/Colors.js';
 
 export const HomeScreen = ({ route }) => {
 
-    const navigation = useNavigation();
-
-    // const { UserData } = route.params;
-    //   console.log('param==', UserData)
-    const [userName, setUserName] = useState('')
+    const [userName, setUserName] = useState()
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigation = useNavigation();
 
     useEffect(() => {
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -42,8 +39,22 @@ export const HomeScreen = ({ route }) => {
                 console.log(error)
             })
     }
+
+    const handleLogout = async () => {
+        console.log('logout')
+        // const value = await AsyncStorage.getItem('value')
+        const token = await AsyncStorage.getItem('token')
+        console.log('TOKEN===', token)
+        await AsyncStorage.removeItem('token');
+        // await AsyncStorage.removeItem('value');
+        navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
+        ToastAndroid.show('Logged out',
+            ToastAndroid.SHORT)
+    }
+
     const handleNavigation = async (item) => {
-        navigation.navigate('CourseDetail')
+        console.log('item==', item)
+        navigation.navigate('CourseDetail', { course_detail: item })
         // console.log('item==', item)
         // navigation.navigate(item.nav);
         // const value = item.nav;
@@ -60,8 +71,12 @@ export const HomeScreen = ({ route }) => {
             style={styles.subContainer}>
             <Image source={{ uri: item.logo_img }} style={styles.icon} />
             <View style={[styles.textContainer, { marginTop: 30 }]}>
-                <Text style={styles.title}>{item.name}</Text>
-                <Text style={styles.lesson}>20 Lessons</Text>
+                <Text style={styles.title} numberOfLines={1}>{item.name}</Text>
+                <Text style={styles.lesson}>{item.lesson_count} Lessons</Text>
+                <View style={{ flexDirection: 'row' }}>
+                    <Image source={item.rating == 0 ? IconPathVariable.Star : IconPathVariable.Fullstar} style={[styles.rateicon]} />
+                    <Text style={{ marginLeft: 8, alignSelf: 'center' }}>({item.rating})</Text>
+                </View>
             </View>
             <View >
             </View>
@@ -84,13 +99,13 @@ export const HomeScreen = ({ route }) => {
 
     return (
         <View style={{ padding: 8, }}>
-            <ImageBackground source={require('../../assets/image/image.jpg')} borderRadius={20} resizeMode='cover'
+            <ImageBackground source={ImagePathVariable.HomeImage} borderRadius={20} resizeMode='cover'
                 style={styles.header}>
                 <View style={[styles.headerContent, { justifyContent: 'space-between' }]}>
                     <View>
                         <Text style={[styles.font, { fontSize: 25 }]}>Hello,</Text>
                         <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>
-                            {/* {userName} */}
+                            {userName}
                         </Text>
                     </View>
                     <View style={styles.iconContainer}>

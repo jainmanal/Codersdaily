@@ -52,6 +52,10 @@ export const LoginApi = async (UserName, Password) => {
         })
 }
 
+export const ForgetPasswordApi = async Email =>{
+    data
+}
+
 export const getCoursesApi = async () => {
     let config = {
         method: 'Get',
@@ -66,6 +70,22 @@ export const getCoursesApi = async () => {
         }).catch(function (error) {
             return error.response;
         })
+}
+
+export const getApi = async (url) =>{
+    let config = {
+        method: 'Get',
+        url : url,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    return axios(config)
+    .then(function (response) {
+        return response;
+    }).catch(function (error) {
+        return error.response;
+    })
 }
 
 export const UpdateProfileApi = async token => {

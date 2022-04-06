@@ -24,7 +24,7 @@ const IconPathVariable = {
     Star  : require('../../assets/icon/star.png'),
     Edit  : require('../../assets/icon/edit.png'),      
     Logout  : require('../../assets/icon/logout.png'),   
-
+    Fullstar : require('../../assets/icon/staar.png')
 }
 
 export default IconPathVariable

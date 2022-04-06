@@ -26,7 +26,8 @@ export const styles = StyleSheet.create({
     maincontainer: {
         // flex: 1,
         marginTop: SCREEN_HEIGHT * 0.08,
-        // padding: 10
+        // padding: 10,
+        alignItems:'center'
     },
     imageContainer: {
         alignSelf: 'center',
@@ -77,8 +78,8 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         alignSelf: 'center',
         paddingHorizontal: 60,
-        position: 'absolute',
-        marginTop: SCREEN_HEIGHT * 0.06,
+        // position: 'absolute',
+        // marginTop: SCREEN_HEIGHT * 0.09,
     },
 
     logout: {
