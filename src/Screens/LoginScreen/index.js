@@ -30,10 +30,8 @@ export const LoginScreen = ({ navigation }) => {
         else {
             LoginApi(UserName, Password).then(async (resp) => {
                 let response = resp;
-                // console.log('Login Response==', response.data)
                 if (response.status == 200) {
                     const token = response.data.access
-                    // console.log('detail', token)
                     await AsyncStorage.setItem('token', token)
                     dispatch(saveUserToken(token));
                     navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
@@ -82,7 +80,8 @@ export const LoginScreen = ({ navigation }) => {
                         }}
                     />
                 </View>
-                <TouchableOpacity style={styles.contain}>
+                <TouchableOpacity onPress={()=> navigation.navigate('ForgetPassword')}
+                style={styles.contain}>
                     <Text style={styles.forgot}>FORGOT</Text>
                 </TouchableOpacity>
 

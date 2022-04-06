@@ -1,15 +1,71 @@
 import React from "react";
-import { View, Text } from 'react-native';
-import { CustomHeader } from '../../../Component/CustomHeader';
+import { View, Text, Image, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import ImagePathVariable from "../../../Helper/ImagePathVariable/ImagePathVariable";
+import IconPathVariable from "../../../Helper/IconPathVariable/IconPathVariable";
 import { styles } from "./styles";
+import { Colors } from "../../../Helper/Colors.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UpdateProfileApi } from "../../../Helper/API_Call/API_Call";
+import { useSelector } from "react-redux";
 
 export const ProfileScreen = () => {
+
+    const navigation = useNavigation();
+    const usertoken = useSelector(state => state?.coders?.userToken)
+
+    const handleLogout = async () => {
+        console.log('logout')
+        const token = await AsyncStorage.getItem('token')
+        console.log('TOKEN===', token)
+        await AsyncStorage.removeItem('token');
+        navigation.navigate('Login')
+        ToastAndroid.show('Logged out successfully',
+            ToastAndroid.SHORT)
+    }
+
+    // const handleEditProfile = async => {
+    //     UpdateProfileApi(usertoken).then(async res => {
+    //         let response = res;
+    //         console.log()
+    //     })
+    // }
+
     return (
-        <View>
-            <CustomHeader />
+        <View style={{ flex: 1 }}>
+            <ImageBackground source={ImagePathVariable.HomeImage} resizeMode={'cover'}
+                borderBottomLeftRadius={80} borderBottomRightRadius={80}
+                style={styles.Container} >
+                <View style={styles.textContainer}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image source={IconPathVariable.Back} style={styles.icon1} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
+                        <Image source={IconPathVariable.Edit} style={styles.icon} />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.imageContainer}>
+                    <Image source={IconPathVariable.Profile} style={styles.image} />
+                </View>
+            </ImageBackground>
             <View style={styles.maincontainer}>
-                <Text>hjbj</Text>
+                <Text style={styles.name}>Preet001</Text>
+                <View style={styles.subContainer}>
+                    <View style={styles.container}>
+                        <MaterialCommunityIcons name={'account'} color={Colors.AppColor} size={24} />
+                        <Text style={styles.text}>Pratibha chouhan</Text>
+                    </View>
+                    <View style={styles.container}>
+                        <MaterialCommunityIcons name={'email'} color={Colors.AppColor} size={24} />
+                        <Text style={styles.text}>preet@gmail.com</Text>
+                    </View>
+                </View>
             </View>
+            <TouchableOpacity onPress={() => handleLogout()}
+                style={styles.button}>
+                <Text style={styles.logout}>Sign Out</Text>
+            </TouchableOpacity>
         </View>
     )
 }

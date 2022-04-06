@@ -67,3 +67,21 @@ export const getCoursesApi = async () => {
             return error.response;
         })
 }
+
+export const UpdateProfileApi = async token => {
+    let config = {
+      method: 'Get',
+      url: 'https://codersdaily.in/api/accounts/update/',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    };
+    return axios(config)
+      .then(function (response) {
+        return response;
+      })
+      .catch(function (error) {
+        return error.response;
+      });
+  };

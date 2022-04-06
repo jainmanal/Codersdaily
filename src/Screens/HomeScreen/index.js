@@ -18,8 +18,8 @@ export const HomeScreen = ({ route }) => {
 
     const navigation = useNavigation();
 
-    const { UserData } = route.params;
-      console.log('param==', UserData)
+    // const { UserData } = route.params;
+    //   console.log('param==', UserData)
     const [userName, setUserName] = useState('')
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -42,19 +42,6 @@ export const HomeScreen = ({ route }) => {
                 console.log(error)
             })
     }
-
-    const handleLogout = async () => {
-        console.log('logout')
-        // const value = await AsyncStorage.getItem('value')
-        const token = await AsyncStorage.getItem('token')
-        console.log('TOKEN===', token)
-        await AsyncStorage.removeItem('token');
-        // await AsyncStorage.removeItem('value');
-        navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
-        ToastAndroid.show('Logged out',
-            ToastAndroid.SHORT)
-    }
-
     const handleNavigation = async (item) => {
         navigation.navigate('CourseDetail')
         // console.log('item==', item)
@@ -107,10 +94,7 @@ export const HomeScreen = ({ route }) => {
                         </Text>
                     </View>
                     <View style={styles.iconContainer}>
-                        <TouchableOpacity onPress={() => handleLogout()}>
-                            <Image source={IconPathVariable.Logout} style={styles.bellIcon} />
-                        </TouchableOpacity>
-                        {/* <Image source={IconPathVariable.Notification} style={styles.bellIcon} /> */}
+                        <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
                     </View>
                 </View>
                 <View style={[styles.textBox, {}]}>

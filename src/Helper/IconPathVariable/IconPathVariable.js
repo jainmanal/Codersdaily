@@ -1,5 +1,6 @@
 const IconPathVariable = {
     Back  : require('../../assets/icon/left-arrow.png'), 
+    Profile  : require('../../assets/icon/user1.png'), 
     Next  : require('../../assets/icon/right-arrow.png'),   
     Menu  : require('../../assets/icon/list.png'),   
     Home  : require('../../assets/icon/home.png'),   
@@ -20,7 +21,8 @@ const IconPathVariable = {
     Notification  : require('../../assets/icon/notification.png'),   
     Book  : require('../../assets/icon/open-book.png'),   
     Lock  : require('../../assets/icon/open-lock.png'),   
-    Star  : require('../../assets/icon/star.png'),   
+    Star  : require('../../assets/icon/star.png'),
+    Edit  : require('../../assets/icon/edit.png'),      
     Logout  : require('../../assets/icon/logout.png'),   
 
 }

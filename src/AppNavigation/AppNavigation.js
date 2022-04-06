@@ -22,6 +22,8 @@ import JavaTopicList from "../Screens/TopicList/JavaTopicList";
 import { SCREEN_WIDTH } from "../Helper/DeviceDimentions";
 import PythonTopicList from "../Screens/TopicList/PythonTopicList";
 import { AppIntroScreen } from "../Screens/AppIntroScreen";
+import ForgetPassword from "../Screens/ForgetPassword";
+import { UpdateProfile } from "../Screens/UpdateProfile";
 
 
 // const Drawer = createDrawerNavigator();
@@ -61,14 +63,16 @@ function AppNavigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="AppIntro" component={AppIntroScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="AppIntro" component={AppIntroScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="ForgetPassword" component={ForgetPassword} options={{ headerShown: false }} />
         <Stack.Screen name="BottomTab" component={BottomTab} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="CourseTab" component={CourseScreen} options={{ headerShown: false }} />
         <Stack.Screen name="CollegeTab" component={CollegesScreen} options={{ headerShown: false }} />
         <Stack.Screen name="ProfileTab" component={ProfileScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="EditProfile" component={UpdateProfile} options={{ headerShown: false }} />
         <Stack.Screen name="CourseDetail" component={CourseDetail} options={{ headerShown: false }} />
 
         <Stack.Screen name="PythonTopic" component={PythonTopicList}
