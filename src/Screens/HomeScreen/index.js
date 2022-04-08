@@ -14,8 +14,9 @@ import { SCREEN_WIDTH } from '../../Helper/DeviceDimentions';
 import { getCoursesApi } from '../../Helper/API_Call/API_Call';
 import { Colors } from '../../Helper/Colors.js';
 
-export const HomeScreen = ({ route }) => {
+export const HomeScreen = ( props ) => {
 
+    // console.log('props', props.data)
     const [userName, setUserName] = useState()
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -40,30 +41,9 @@ export const HomeScreen = ({ route }) => {
             })
     }
 
-    const handleLogout = async () => {
-        console.log('logout')
-        // const value = await AsyncStorage.getItem('value')
-        const token = await AsyncStorage.getItem('token')
-        console.log('TOKEN===', token)
-        await AsyncStorage.removeItem('token');
-        // await AsyncStorage.removeItem('value');
-        navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
-        ToastAndroid.show('Logged out',
-            ToastAndroid.SHORT)
-    }
-
     const handleNavigation = async (item) => {
-        console.log('item==', item)
-        navigation.navigate('CourseDetail', { course_detail: item })
         // console.log('item==', item)
-        // navigation.navigate(item.nav);
-        // const value = item.nav;
-        // console.log('value======', value)
-        // try {
-        //     await AsyncStorage.setItem('subName', value)
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        navigation.navigate('CourseDetail', { course_detail: item })
     }
 
     const renderCourseList = ({ item }) => (
@@ -83,20 +63,6 @@ export const HomeScreen = ({ route }) => {
         </TouchableOpacity>
     )
 
-    const renderItem1 = ({ item }) => (
-        <View style={styles.subContainer1}>
-            <ImageBackground blurRadius={1}
-                borderTopRightRadius={10}
-                borderTopLeftRadius={10}
-                source={item.image} style={styles.image} >
-                <Text style={styles.name}>{item.title}</Text>
-            </ImageBackground>
-            <TouchableOpacity style={styles.textContainer}>
-                <Text style={styles.txt}>View All Courses and fees</Text>
-            </TouchableOpacity>
-        </View>
-    )
-
     return (
         <View style={{ padding: 8, }}>
             <ImageBackground source={ImagePathVariable.HomeImage} borderRadius={20} resizeMode='cover'
@@ -105,11 +71,13 @@ export const HomeScreen = ({ route }) => {
                     <View>
                         <Text style={[styles.font, { fontSize: 25 }]}>Hello,</Text>
                         <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>
-                            {userName}
+                            {props.data}
                         </Text>
                     </View>
                     <View style={styles.iconContainer}>
-                        <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
+                        <TouchableOpacity>
+                            <Image source={IconPathVariable.Notification} style={styles.bellIcon} />
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={[styles.textBox, {}]}>

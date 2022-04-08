@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { HomeScreen } from '../../Screens/HomeScreen/index.js';
 import { CourseScreen } from '../../Screens/BottomTabScreens/CourseScreen/index.js';
 import { CollegesScreen } from '../../Screens/BottomTabScreens/CollegesScreen/index.js';
@@ -8,7 +8,12 @@ import { Colors } from '../Colors.js';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../DeviceDimentions/index';
 import IconsPathVariable from '../IconPathVariable/IconPathVariable';
 
-const BottomTab = ({ navigation }) => {
+const BottomTab = ({ route, navigation }) => {
+
+    const { UserData } = route.params;
+    console.log('pramaNAME===', UserData.username)
+
+    const username = UserData.username
 
     const [homeTabdata, setHomeTabData] = useState(true);
     const [courseTabData, setCourseTabData] = useState(false);
@@ -53,14 +58,16 @@ const BottomTab = ({ navigation }) => {
                 {
                     homeTabdata ?
 
-                        <HomeScreen></HomeScreen>
+                        <HomeScreen 
+                        data={username}
+                        ></HomeScreen>
                         :
                         null
                 }
 
                 {
                     courseTabData ?
-                      <CourseScreen></CourseScreen>
+                        <CourseScreen></CourseScreen>
                         :
                         null
                 }
@@ -68,7 +75,7 @@ const BottomTab = ({ navigation }) => {
                 {
                     collegeTabData ?
 
-                    <CollegesScreen></CollegesScreen>
+                        <CollegesScreen></CollegesScreen>
                         :
                         null
                 }
@@ -76,7 +83,7 @@ const BottomTab = ({ navigation }) => {
                 {
                     profileTabData ?
 
-                     <ProfileScreen></ProfileScreen>
+                        <ProfileScreen></ProfileScreen>
                         :
                         null
                 }
@@ -251,8 +258,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         tintColor: Colors.AppColor
     },
-    Ellipse:{
-        alignItems:'center'
+    Ellipse: {
+        alignItems: 'center'
     }
-    
+
 });

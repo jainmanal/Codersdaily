@@ -14,8 +14,9 @@ export const CourseScreen = () => {
     const navigation = useNavigation();
     const [DATA, setDATA] = useState([]);
 
-    const handleNavigation = (id) => {
-        navigation.navigate('CourseDetail')
+    const handleNavigation = (item) => {
+        // console.log('item', item)
+        navigation.navigate('CourseDetail', { course_detail: item })
     }
 
     useEffect(() => {
@@ -41,7 +42,7 @@ export const CourseScreen = () => {
             <View style={styles.descContainer}>
                 <Text style={styles.description}>{item.short_desc}</Text>
             </View>
-            <TouchableOpacity onPress={() => handleNavigation(item.id)}
+            <TouchableOpacity onPress={() => handleNavigation(item)}
                 style={styles.botomContainer}>
                 <Text style={styles.text}>Learn More</Text>
             </TouchableOpacity>

@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         padding: 20,
-        backgroundColor: Colors.White
+        backgroundColor: Colors.White,
+        marginTop: SCREEN_HEIGHT * 0.06,
+        height: SCREEN_HEIGHT
     },
     logo: {
         marginTop: 20,

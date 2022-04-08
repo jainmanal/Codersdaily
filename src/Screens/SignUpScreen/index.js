@@ -71,6 +71,8 @@ export const SignUpScreen = ({ navigation }) => {
                     await AsyncStorage.setItem('token', token);
                     dispatch(saveUserDetail(JSON.parse(value)));
                     dispatch(saveUserToken(token));
+                   const UserData = response.data.data.user_details
+                   console.log('UserData', UserData)
                     navigation.navigate('BottomTab', { UserData: response.data.data.user_details })
                     // navigation.reset({ index: 0, routes: [{ name: 'BottomTab', UserData: response.data.data.user_details }] })
                     ToastAndroid.show('Registered Successfully',
@@ -86,6 +88,7 @@ export const SignUpScreen = ({ navigation }) => {
             })
 
         }
+        // navigation.navigate('BottomTab', {myName: 'preet'})
     }
 
     return (

@@ -4,8 +4,22 @@ import { Colors } from '../../Helper/Colors.js';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.White
+        zIndex: 1,
+        backgroundColor: Colors.White,
+        marginTop: 100
     },
+    logo: {
+        height: 220,
+        width: 220,
+        marginBottom: 20,
+    },
+    text: {
+        fontSize: 34,
+        fontWeight: 'bold',
+        color: Colors.AppColor
+    },
+    subContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
 })

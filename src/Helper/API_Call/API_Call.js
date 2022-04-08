@@ -52,8 +52,49 @@ export const LoginApi = async (UserName, Password) => {
         })
 }
 
-export const ForgetPasswordApi = async Email =>{
-    data
+export const ForgotPasswordApi = async (Email) => {
+
+    console.log('passwordAPI')
+    const data = {
+        email: Email
+    }
+    console.log('password', data)
+    let config = {
+        method: 'POST',
+        url: 'https://codersdaily.in/api/accounts/forgot-password/',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data,
+    }
+    return axios(config)
+        .then(function (response) {
+            return response
+        }).catch(function (error) {
+            return error.response
+        })
+}
+
+export const VerifyOtp = async (Email,OTP) => {
+    const data = {
+        email: Email,
+        otp: OTP
+    }
+    console.log(data)
+    let config = {
+        method: 'POST',
+        url: 'https://codersdaily.in/api/accounts/verify-password-otp/',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data,
+    }
+    return axios(config)
+        .then(function (response) {
+            return response
+        }).catch(function (error) {
+            return error.response
+        })
 }
 
 export const getCoursesApi = async () => {
@@ -72,36 +113,47 @@ export const getCoursesApi = async () => {
         })
 }
 
-export const getApi = async (url) =>{
+export const getApi = async (url) => {
     let config = {
         method: 'Get',
-        url : url,
+        url: url,
         headers: {
             'Content-Type': 'application/json',
         },
     };
     return axios(config)
-    .then(function (response) {
-        return response;
-    }).catch(function (error) {
-        return error.response;
-    })
+        .then(function (response) {
+            return response;
+        }).catch(function (error) {
+            return error.response;
+        })
 }
 
-export const UpdateProfileApi = async token => {
+export const UpdateProfileApi = async (token, FirstName, LastName, UserName, Email) => {
+    const Data = {
+        // data: {
+        first_name: FirstName,
+        last_name: LastName,
+        username: UserName,
+        email: Email,
+        // password: Password
+        // }
+    };
+    console.log('updateProfile', Data)
     let config = {
-      method: 'Get',
-      url: 'https://codersdaily.in/api/accounts/update/',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
+        method: 'put',
+        url: 'https://codersdaily.in/api/accounts/update/',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token,
+        },
+        data: JSON.stringify(Data),
     };
     return axios(config)
-      .then(function (response) {
-        return response;
-      })
-      .catch(function (error) {
-        return error.response;
-      });
-  };
+        .then(function (response) {
+            return response;
+        })
+        .catch(function (error) {
+            return error.response;
+        });
+};

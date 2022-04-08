@@ -9,7 +9,7 @@ import HTMLView   from 'react-native-htmlview'
 
 export const LessonDetails = ({route,navigation}) => {
 
-    console.log('LessonDetails',route.params.lesson_detail)
+    // console.log('LessonDetails',route.params.lesson_detail)
     const lesson_detail = route.params.lesson_detail
 
     const [LessonName,setLessonName] = useState(lesson_detail.lesson_name)

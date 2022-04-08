@@ -1,56 +1,119 @@
 import React, { useRef, useEffect } from 'react';
-import { View, Text, Image, Animated } from 'react-native';
+import { View, Text, Image, Animated, Dimensions } from 'react-native';
 import { styles } from './styles.js';
 import ImagePathVariable from '../../Helper/ImagePathVariable/ImagePathVariable.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { saveUserDetail, saveUserToken } from '../../Redux/Actions/action.js';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LoginScreen } from '../LoginScreen/index.js';
 
 const SplashScreen = ({ navigation }) => {
 
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const edges = useSafeAreaInsets();
+    const startAnim = useRef(new Animated.Value(0)).current;
+
+    const scaleLogo = useRef(new Animated.Value(1)).current;
+    const scaleTitle = useRef(new Animated.Value(1)).current;
+
+    const moveLogo = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fadeIn();
+        setTimeout(() => {
+            Animated.parallel([
+                Animated.timing(
+                    startAnim,
+                    {
+                        toValue: -Dimensions.get('window').height + edges.top + 65,
+                        useNativeDriver: true
+                    }
+                ),
+                Animated.timing(
+                    scaleLogo,
+                    {
+                        toValue: 0.35,
+                        useNativeDriver: true
+                    }
+                ),
+                Animated.timing(
+                    scaleTitle,
+                    {
+                        toValue: 0.8,
+                        useNativeDriver: true
+                    }
+                ),
+                Animated.timing(
+                    moveLogo,
+                    {
+                        toValue: {
+                            x: (Dimensions.get('window').width / 2) - 200,
+                            y: (Dimensions.get('window').height / 2) - 50
+                        },
+                        useNativeDriver: true
+                    }
+                ),
+            ]).start();
+        }, 2000)
         setTimeout(() => {
             checkIfAlreadySignedIn()
-        }, 2500);
+        }, 150);
     }, [])
 
-    const fadeIn = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 2000,
-            useNativeDriver: true
-        }).start();
-    };
-
     const checkIfAlreadySignedIn = async () => {
-        // const Value = await AsyncStorage.getItem('value')
         const token = await AsyncStorage.getItem('token')
-        console.log('splash value', token)
-        if (token != null) {
-            // dispatch(saveUserDetail(JSON.parse(Value)));
+        const value = await AsyncStorage.getItem('value')
+        console.log('splash value==', token, value)
+        if (token != null && value != null) {
+            dispatch(saveUserDetail(JSON.parse(value)));
             dispatch(saveUserToken(token))
-            navigation.navigate('BottomTab');
+            navigation.navigate('BottomTab', {UserData: value});
         }
-        else {
-            navigation.navigate('AppIntro');
-        }
+        // else {
+        //     navigation.navigate('Login');
+        // }
     }
 
     return (
-        <View style={styles.container}>
-            <Animated.View
-                style={[
-                    styles.fadingContainer,
+        <View style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+        }}>
+            <Animated.View style={[styles.container,
+            { transform: [{ translateY: startAnim }] }]}>
+                <Animated.View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                >
+                    <Animated.Image source={ImagePathVariable.AppLogo} resizeMode='contain' style={[styles.logo,
                     {
-                        opacity: fadeAnim
+                        transform: [
+                            { translateX: moveLogo.x },
+                            { translateY: moveLogo.y },
+                            { scale: scaleLogo },
+
+                        ]
                     }
-                ]}
-            >
-                <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+                    ]} />
+                </Animated.View>
+            </Animated.View>
+
+            <Animated.View style={{
+                position: 'absolute',
+                // top: 0,
+                // bottom: 0,
+                // left: 0,
+                // right: 0,
+                backgroundColor: 'white',
+                zIndex: 0
+            }}>
+                <LoginScreen></LoginScreen>
             </Animated.View>
         </View>
     )

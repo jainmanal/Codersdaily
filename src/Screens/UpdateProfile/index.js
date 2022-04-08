@@ -9,20 +9,24 @@ import { SCREEN_HEIGHT } from "../../Helper/DeviceDimentions";
 import { Colors } from "../../Helper/Colors.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UpdateProfileApi } from "../../Helper/API_Call/API_Call";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomEmailTextInput } from "../../Component/CustomEmailTextInput";
 import LinearGradient from "react-native-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
+import { saveUserDetail } from "../../Redux/Actions/action";
 
-export const UpdateProfile = () => {
+export const UpdateProfile = ({ route }) => {
 
+    const { params } = route.params;
+    console.log('params===', params);
     const navigation = useNavigation();
     const usertoken = useSelector(state => state?.coders?.userToken)
+    const dispatch = useDispatch()
 
-    const [FirstName, setFirstName] = useState('')
-    const [LastName, setLastName] = useState('')
-    const [UserName, setUserName] = useState('')
-    const [Email, setEmail] = useState('')
+    const [FirstName, setFirstName] = useState(params.data.first_name)
+    const [LastName, setLastName] = useState(params.data.last_name)
+    const [UserName, setUserName] = useState(params.data.username)
+    const [Email, setEmail] = useState(params.data.email)
     const [Password, setPassword] = useState('')
 
     const inputFirstName = useRef(null);
@@ -32,10 +36,21 @@ export const UpdateProfile = () => {
     const inputPassword = useRef(null);
 
     const handleEditProfile = async => {
-        console.log('hey')
-        UpdateProfileApi(usertoken).then(async res => {
+        console.log('heyyy')
+        UpdateProfileApi(usertoken, FirstName, LastName, UserName, Email).then(async res => {
             let response = res;
             console.log('EditResponse', response.data)
+            const value = JSON.stringify(response.data)
+            await AsyncStorage.setItem('value', value);
+            console.log('==', response.data.data.username)
+            dispatch(saveUserDetail(value));
+            // navigation.navigate('ProfileTab')
+            // navigation.navigate('BottomTab', { UserData: response.data.data.username })
+            ToastAndroid.show('Profile Updated',
+                ToastAndroid.SHORT)
+        }).catch(err => {
+            let error = err;
+            console.log(error)
         })
     }
 
@@ -60,7 +75,7 @@ export const UpdateProfile = () => {
                             autoCapitalize='none'
                             keyboardType='email-address'
                             IconName={'account'}
-                            onSubmitEditing={() => inputFirstName.current.focus()}
+                            // onSubmitEditing={() => inputFirstName.current.focus()}
                             TextInputProps={{
                                 placeholder: "First Name",
                                 onChangeText: (text) => setFirstName(text),
@@ -74,7 +89,7 @@ export const UpdateProfile = () => {
                             autoCapitalize='none'
                             keyboardType='email-address'
                             IconName={'account'}
-                            onSubmitEditing={() => inputLastName.current.focus()}
+                            // onSubmitEditing={() => inputLastName.current.focus()}
                             TextInputProps={{
                                 placeholder: "Last Name",
                                 onChangeText: (text) => setLastName(text),
@@ -88,7 +103,7 @@ export const UpdateProfile = () => {
                             autoCapitalize='none'
                             keyboardType='email-address'
                             IconName={'account'}
-                            onSubmitEditing={() => inputUserName.current.focus()}
+                            // onSubmitEditing={() => inputUserName.current.focus()}
                             TextInputProps={{
                                 placeholder: "User name",
                                 onChangeText: (text) => setUserName(text),
@@ -102,7 +117,7 @@ export const UpdateProfile = () => {
                             autoCapitalize='none'
                             keyboardType='email-address'
                             IconName={'email'}
-                            onSubmitEditing={() => inputEmailId.current.focus()}
+                            // onSubmitEditing={() => inputEmailId.current.focus()}
                             TextInputProps={{
                                 placeholder: "Email",
                                 onChangeText: (text) => setEmail(text),

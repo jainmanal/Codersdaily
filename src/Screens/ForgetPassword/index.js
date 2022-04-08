@@ -2,7 +2,7 @@ import React, { useState, createRef, useRef } from 'react';
 import { Image, Text, ToastAndroid, View, TouchableOpacity } from 'react-native';
 import { CustomEmailTextInput } from '../../Component/CustomEmailTextInput';
 import ImagePathVariable from '../../Helper/ImagePathVariable/ImagePathVariable.js';
-// import { ForgotPasswordApi, LoginApi } from '../../Helper/API_Call/API_Call.js';
+import { ForgotPasswordApi, LoginApi } from '../../Helper/API_Call/API_Call.js';
 import { styles } from './styles.js';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -11,25 +11,35 @@ const ForgetPassword = ({ navigation }) => {
     const [Email, SetEmail] = useState("");
 
     const onSubmit = () => {
-        navigation.navigate('verifyOTP');
+        // navigation.navigate('verifyOTP');
 
-        // console.log('hii')
-        // if (!Email) {
-        //     ToastAndroid.show('Please enter email',
-        //     ToastAndroid.SHORT)
-        // }
-        //     else {
-        //         ForgotPasswordApi(Email).then(async (res) => {
-        //             let response = res;
-        //             console.log(response.data)
-        //             // navigation.replace("ConfirmPassword")
-        //         })
-        //             .catch(err => {
-        //                 let error = err
-        //                 console.log(error)
+        console.log('hii')
+        if (!Email) {
+            ToastAndroid.show('Please enter email',
+            ToastAndroid.SHORT)
+        }
+            else {
+                console.log('API')
+                ForgotPasswordApi(Email).then(async (res) => {
+                    let response = res;
+                    console.log('response',response.data.data.email)
+                    if (response.data.status_code == 200) {
+                        console.log('email', response.data.data.email)
+                        navigation.navigate('verifyOTP', {email: response.data.data.email})
+                        ToastAndroid.show(response.data.message,
+                            ToastAndroid.SHORT)
+                    }
+                    else{
+                        ToastAndroid.show(response.data.message,
+                            ToastAndroid.SHORT)
+                    }
+                })
+                    .catch(err => {
+                        let error = err
+                        console.log(error)
 
-        //             })
-        //     }
+                    })
+            }
     }
 
     return (

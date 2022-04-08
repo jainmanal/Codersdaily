@@ -9,10 +9,12 @@ import LinearGradient from "react-native-linear-gradient";
 import { LoginApi } from "../../Helper/API_Call/API_Call";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
-import { saveUserToken } from "../../Redux/Actions/action";
+import { saveUserDetail, saveUserToken } from "../../Redux/Actions/action";
+import { useNavigation } from "@react-navigation/native";
 
-export const LoginScreen = ({ navigation }) => {
+export const LoginScreen = () => {
 
+    const navigation = useNavigation()
     const [UserName, setUserName] = useState('')
     const [Password, setPassword] = useState('')
 
@@ -30,11 +32,17 @@ export const LoginScreen = ({ navigation }) => {
         else {
             LoginApi(UserName, Password).then(async (resp) => {
                 let response = resp;
+                console.log('response', response)
                 if (response.status == 200) {
-                    const token = response.data.access
+                    const token = response.data.data.token.access
+                    const value = JSON.stringify(response.data.data.user_details)
+                    // console.log('value', value)
                     await AsyncStorage.setItem('token', token)
+                    await AsyncStorage.setItem('value', value)
+                    dispatch(saveUserDetail(JSON.parse(value)));
                     dispatch(saveUserToken(token));
-                    navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
+                    navigation.navigate('BottomTab', { UserData: response.data.data.user_details })
+                    // navigation.reset({ index: 0, routes: [{ name: 'BottomTab', UserData: response.data.data.user_details}] })
                     ToastAndroid.show('Logged in Successfully',
                         ToastAndroid.SHORT)
                 }
@@ -47,12 +55,21 @@ export const LoginScreen = ({ navigation }) => {
                 ToastAndroid.show(e,
                     ToastAndroid.SHORT)
             })
+
+            // setTimeout(() =>{
+            //     console.log('RefreshToken====================')
+            //     refreshToken()
+            // }, 2500);
         }
+    }
+
+    const refreshToken = () => {
+
     }
 
     return (
         <View style={styles.mainContainer}>
-            <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
+            {/* <Image source={ImagePathVariable.AppLogo} style={styles.logo} /> */}
             <View style={styles.container}>
                 <Text style={styles.login}>Login</Text>
                 <Text style={styles.text}>Please sign in to continue.</Text>
@@ -80,8 +97,8 @@ export const LoginScreen = ({ navigation }) => {
                         }}
                     />
                 </View>
-                <TouchableOpacity onPress={()=> navigation.navigate('ForgetPassword')}
-                style={styles.contain}>
+                <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}
+                    style={styles.contain}>
                     <Text style={styles.forgot}>FORGOT PASSWORD ?</Text>
                 </TouchableOpacity>
 
