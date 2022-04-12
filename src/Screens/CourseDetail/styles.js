@@ -7,11 +7,12 @@ export const styles = StyleSheet.create({
         marginTop: 60,
     },
     heading: {
-        fontSize: 22,
-        color: Colors.black,
+        fontSize: 28,
+        color: Colors.White,
         fontWeight: 'bold',
         // textAlign: 'center',
-        marginVertical: 10
+        marginVertical: 10,
+        // textAlign:'center'
     },
     container: {
         zIndex: 10,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
         elevation: 10,
         alignItems: 'center',
         padding: 10,
-         justifyContent:'space-between',
+        justifyContent: 'space-between',
         flexDirection: 'row'
     },
     logo: {
@@ -52,73 +53,94 @@ export const styles = StyleSheet.create({
         tintColor: Colors.AppColor
     },
     text: {
-        width:'75%',
-        fontSize: 18,
-        fontWeight: 'bold',
+        // width:'75%',
+        fontSize: 16,
+        // fontWeight: 'bold',
         color: Colors.black,
-        alignSelf:'center'
+        alignSelf: 'center',
+        marginLeft: 10
     },
     iconContainer: {
-        width:40,
-        height:40,
+        width: 40,
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fbdf8d',
         borderRadius: 20,
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     txt: {
         fontWeight: 'bold',
-        color: Colors.black
+        color: Colors.White,
+        fontSize: 16
     },
     name: {
-        color: Colors.AppColor,
-        fontWeight: 'bold'
+        fontSize: 14,
+        color: Colors.White,
+        fontWeight: 'normal'
     },
     centeredView: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-      },
-      modalView: {
+    },
+    modalView: {
         margin: 10,
-        width:SCREEN_WIDTH*65/100,
-        alignSelf:'center',
+        width: SCREEN_WIDTH * 65 / 100,
+        alignSelf: 'center',
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
-        borderColor:Colors.AppColor,
-        borderWidth:4,
+        padding: 10,
+        borderColor: Colors.AppColor,
+        borderWidth: 4,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 2
+            width: 0,
+            height: 2
         },
         // paddingVertical:SCREEN_WIDTH*30/100
     },
     button: {
         borderRadius: 20,
-        marginTop:SCREEN_WIDTH*5/100,
-        paddingVertical: SCREEN_WIDTH*3/100,
+        marginTop: SCREEN_WIDTH * 5 / 100,
+        paddingVertical: SCREEN_WIDTH * 3 / 100,
         elevation: 2,
-        width:SCREEN_WIDTH*30/100
-      },
- 
-      buttonClose: {
+        width: SCREEN_WIDTH * 30 / 100,
+        marginVertical: SCREEN_HEIGHT * 0.03
+    },
+
+    buttonClose: {
         backgroundColor: "#fbba28",
-      },
-      textStyle: {
+    },
+    textStyle: {
         color: "white",
         fontWeight: "bold",
         textAlign: "center"
-      },
-      modalText: {
+    },
+    modalText: {
         fontSize: 20,
         color: Colors.black,
         fontWeight: 'bold',
         textAlign: 'center',
         marginVertical: 10
-      }
+    },
+    linearContainer: {
+        padding: 20,
+        borderRadius: 30,
+        alignItems: 'center',
+        elevation: 10,
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        marginHorizontal: 4
+        // backgroundColor:'#fff'
+    },
+    linear: {
+        flex: 1,
+        paddingHorizontal: 5,
+
+    }
 })

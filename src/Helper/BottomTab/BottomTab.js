@@ -1,5 +1,5 @@
-import React, { useState, } from 'react';
-import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Image, StyleSheet, Text, View, TouchableOpacity, BackHandler, Alert } from 'react-native';
 import { HomeScreen } from '../../Screens/HomeScreen/index.js';
 import { CourseScreen } from '../../Screens/BottomTabScreens/CourseScreen/index.js';
 import { CollegesScreen } from '../../Screens/BottomTabScreens/CollegesScreen/index.js';
@@ -10,10 +10,26 @@ import IconsPathVariable from '../IconPathVariable/IconPathVariable';
 
 const BottomTab = ({ route, navigation }) => {
 
-    const { UserData } = route.params;
-    console.log('pramaNAME===', UserData.username)
+    // useEffect(() => {
+    //     const backAction = () => {
+    //         Alert.alert("Hold on!", "Are you sure you want to go back?", [
+    //             {
+    //                 text: "Cancel",
+    //                 onPress: () => null,
+    //                 style: "cancel"
+    //             },
+    //             { text: "YES", onPress: () => BackHandler.exitApp() }
+    //         ]);
+    //         return true;
+    //     };
 
-    const username = UserData.username
+    //     const backHandler = BackHandler.addEventListener(
+    //         "hardwareBackPress",
+    //         backAction
+    //     );
+
+    //     return () => backHandler.remove();
+    // }, []);
 
     const [homeTabdata, setHomeTabData] = useState(true);
     const [courseTabData, setCourseTabData] = useState(false);
@@ -58,8 +74,7 @@ const BottomTab = ({ route, navigation }) => {
                 {
                     homeTabdata ?
 
-                        <HomeScreen 
-                        data={username}
+                        <HomeScreen
                         ></HomeScreen>
                         :
                         null

@@ -17,17 +17,18 @@ import { saveUserDetail } from "../../Redux/Actions/action";
 
 export const UpdateProfile = ({ route }) => {
 
-    const { params } = route.params;
-    console.log('params===', params);
     const navigation = useNavigation();
+    const user = useSelector(state => state?.coders?.userDetails)
+    console.log('user', user)
     const usertoken = useSelector(state => state?.coders?.userToken)
     const dispatch = useDispatch()
 
-    const [FirstName, setFirstName] = useState(params.data.first_name)
-    const [LastName, setLastName] = useState(params.data.last_name)
-    const [UserName, setUserName] = useState(params.data.username)
-    const [Email, setEmail] = useState(params.data.email)
+    const [FirstName, setFirstName] = useState(user.first_name)
+    const [LastName, setLastName] = useState(user.last_name)
+    const [UserName, setUserName] = useState(user.username)
+    const [Email, setEmail] = useState(user.email)
     const [Password, setPassword] = useState('')
+    const [accessToken, setAccessToken] = useState("")
 
     const inputFirstName = useRef(null);
     const inputLastName = useRef(null);
@@ -36,21 +37,20 @@ export const UpdateProfile = ({ route }) => {
     const inputPassword = useRef(null);
 
     const handleEditProfile = async => {
-        console.log('heyyy')
-        UpdateProfileApi(usertoken, FirstName, LastName, UserName, Email).then(async res => {
+        UpdateProfileApi(accessToken, FirstName, LastName, UserName, Email).then(async res => {
             let response = res;
-            console.log('EditResponse', response.data)
-            const value = JSON.stringify(response.data)
-            await AsyncStorage.setItem('value', value);
-            console.log('==', response.data.data.username)
-            dispatch(saveUserDetail(value));
-            // navigation.navigate('ProfileTab')
-            // navigation.navigate('BottomTab', { UserData: response.data.data.username })
-            ToastAndroid.show('Profile Updated',
-                ToastAndroid.SHORT)
-        }).catch(err => {
-            let error = err;
-            console.log(error)
+            console.log('response',response.data)
+
+        //     const value = JSON.stringify(response.data)
+        //     await AsyncStorage.setItem('value', value);
+        //     console.log('==', response.data.data.username)
+        //     dispatch(saveUserDetail(JSON.parse(value)));
+        //     navigation.navigate('BottomTab')
+        //     ToastAndroid.show('Profile Updated',
+        //         ToastAndroid.SHORT)
+        // }).catch(err => {
+        //     let error = err;
+        //     console.log(error)
         })
     }
 

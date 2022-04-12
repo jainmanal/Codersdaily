@@ -30,10 +30,10 @@ export const ProfileScreen = () => {
         UpdateProfileApi(usertoken).then(async res => {
             let response = res;
             console.log('EditResponse', response.data)
-            setParams(response.data)
+            // setParams(response.data)
             setUserName(response.data.data.username);
             setFirstName(response.data.data.first_name)
-            setLastName(response.data.data.last_name)
+            setLastName(response.data.data.last_name)  
             setEmail(response.data.data.email)
 
         }).catch(err => {
@@ -61,7 +61,7 @@ export const ProfileScreen = () => {
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image source={IconPathVariable.Back} style={styles.icon1} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('EditProfile', { params })}>
+                    <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
                         <Image source={IconPathVariable.Edit} style={styles.icon} />
                     </TouchableOpacity>
                 </View>

@@ -28,16 +28,23 @@ export const styles = StyleSheet.create({
         tintColor: Colors.AppColor
     },
     button: {
-        marginTop: SCREEN_HEIGHT * 0.2,
+        // marginTop: SCREEN_HEIGHT * 0.2,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.AppColor,
         borderRadius: 10,
         padding: 10,
+        paddingHorizontal:20,
         alignSelf: 'center'
     },
     buttonText: {
         color: Colors.White,
         fontSize: 18
+    },
+    logo:{
+        height: 80,
+        width:80,
+        alignSelf:'center',
+        marginTop: SCREEN_HEIGHT * 0.04
     },
 })

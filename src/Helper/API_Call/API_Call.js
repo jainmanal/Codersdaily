@@ -75,7 +75,7 @@ export const ForgotPasswordApi = async (Email) => {
         })
 }
 
-export const VerifyOtp = async (Email,OTP) => {
+export const VerifyOtp = async (Email, OTP) => {
     const data = {
         email: Email,
         otp: OTP
@@ -88,6 +88,28 @@ export const VerifyOtp = async (Email,OTP) => {
             'Content-Type': 'application/json'
         },
         data: data,
+    }
+    return axios(config)
+        .then(function (response) {
+            return response
+        }).catch(function (error) {
+            return error.response
+        })
+}
+
+export const confirmPassword = async (ConfirmPassword, Email) => {
+    const data = {
+        confirm_password: ConfirmPassword,
+        email: Email
+    }
+    console.log('confirm', data)
+    let config = {
+        method: 'PUT',
+        url: 'https://codersdaily.in/api/accounts/confirm-password/',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data),
     }
     return axios(config)
         .then(function (response) {
@@ -129,17 +151,35 @@ export const getApi = async (url) => {
         })
 }
 
+export const ratingApi = async (Rating, User, courseId) => {
+    const data = {
+        rating: Rating,
+        user: User,
+        course: courseId
+    }
+    console.log('data==++++', data)
+    let config = {
+        method: 'POST',
+        url: 'https://codersdaily.in/api/course-rating/',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    return axios(config)
+        .then(function (response) {
+            return response;
+        }).catch(function (error) {
+            return error.response
+        })
+}
+
 export const UpdateProfileApi = async (token, FirstName, LastName, UserName, Email) => {
-    const Data = {
-        // data: {
+    const data = {
         first_name: FirstName,
         last_name: LastName,
         username: UserName,
-        email: Email,
-        // password: Password
-        // }
-    };
-    console.log('updateProfile', Data)
+        email: Email
+    }
     let config = {
         method: 'put',
         url: 'https://codersdaily.in/api/accounts/update/',
@@ -147,7 +187,6 @@ export const UpdateProfileApi = async (token, FirstName, LastName, UserName, Ema
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + token,
         },
-        data: JSON.stringify(Data),
     };
     return axios(config)
         .then(function (response) {

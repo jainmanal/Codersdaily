@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: Colors.White,
-        marginTop: SCREEN_HEIGHT * 0.06,
+        // marginTop: SCREEN_HEIGHT * 0.06,
         height: SCREEN_HEIGHT
     },
     logo: {
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     container: {
-        marginTop: 60
+        marginTop: 30
     },
     login: {
         fontSize: 38,

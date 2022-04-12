@@ -11,12 +11,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
 import { saveUserDetail, saveUserToken } from "../../Redux/Actions/action";
 import { useNavigation } from "@react-navigation/native";
+import { Colors } from "../../Helper/Colors.js";
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 export const LoginScreen = () => {
 
     const navigation = useNavigation()
     const [UserName, setUserName] = useState('')
     const [Password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -31,6 +35,7 @@ export const LoginScreen = () => {
         }
         else {
             LoginApi(UserName, Password).then(async (resp) => {
+                setLoading(true)
                 let response = resp;
                 console.log('response', response)
                 if (response.status == 200) {
@@ -41,16 +46,19 @@ export const LoginScreen = () => {
                     await AsyncStorage.setItem('value', value)
                     dispatch(saveUserDetail(JSON.parse(value)));
                     dispatch(saveUserToken(token));
-                    navigation.navigate('BottomTab', { UserData: response.data.data.user_details })
-                    // navigation.reset({ index: 0, routes: [{ name: 'BottomTab', UserData: response.data.data.user_details}] })
+                    setLoading(false)
+                    // navigation.navigate('BottomTab')
+                    navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
                     ToastAndroid.show('Logged in Successfully',
                         ToastAndroid.SHORT)
                 }
                 else {
+                    setLoading(false)
                     ToastAndroid.show(response.data.detail,
                         ToastAndroid.SHORT)
                 }
             }).catch(e => {
+                setLoading(false)
                 console.log('error', e)
                 ToastAndroid.show(e,
                     ToastAndroid.SHORT)
@@ -69,7 +77,17 @@ export const LoginScreen = () => {
 
     return (
         <View style={styles.mainContainer}>
-            {/* <Image source={ImagePathVariable.AppLogo} style={styles.logo} /> */}
+             {
+                loading ?
+                    <Spinner
+                        visible
+                        animation="fade"
+                        color={Colors.AppColor}
+                    />
+                    : null
+            }
+
+            <Image source={ImagePathVariable.AppLogo} style={styles.logo} />
             <View style={styles.container}>
                 <Text style={styles.login}>Login</Text>
                 <Text style={styles.text}>Please sign in to continue.</Text>

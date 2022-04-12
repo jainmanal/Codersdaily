@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     },
     text:{
         marginVertical: 10,
-        color: Colors.TextGrey,
-        fontSize: 18
+        color: '#71797E',
+        fontSize: 14,
     }
 })

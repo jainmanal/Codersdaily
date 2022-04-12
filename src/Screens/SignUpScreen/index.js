@@ -64,17 +64,17 @@ export const SignUpScreen = ({ navigation }) => {
                     console.log('userdetails', value)
                     const UserName = JSON.stringify(response.data.data.user_details.username)
                     console.log('usernme', UserName)
-                    await AsyncStorage.setItem('UserName',UserName)
+                    await AsyncStorage.setItem('UserName', UserName)
                     const token = response.data.data.token.access;
                     // console.log('Token==', token)
                     await AsyncStorage.setItem('value', value);
                     await AsyncStorage.setItem('token', token);
                     dispatch(saveUserDetail(JSON.parse(value)));
                     dispatch(saveUserToken(token));
-                   const UserData = response.data.data.user_details
-                   console.log('UserData', UserData)
-                    navigation.navigate('BottomTab', { UserData: response.data.data.user_details })
-                    // navigation.reset({ index: 0, routes: [{ name: 'BottomTab', UserData: response.data.data.user_details }] })
+                    const UserData = response.data.data.user_details
+                    console.log('UserData', UserData)
+                    // navigation.navigate('BottomTab')
+                    navigation.reset({ index: 0, routes: [{ name: 'BottomTab' }] })
                     ToastAndroid.show('Registered Successfully',
                         ToastAndroid.SHORT)
                 }
@@ -102,7 +102,6 @@ export const SignUpScreen = ({ navigation }) => {
                             autoCapitalize='none'
                             keyboardType='email-address'
                             IconName={'account'}
-                            // MaterialCommunityIcons="lock"
                             onSubmitEditing={() => inputFirstName.current.focus()}
                             TextInputProps={{
                                 placeholder: "First Name",
@@ -116,8 +115,8 @@ export const SignUpScreen = ({ navigation }) => {
                                 autoCapitalize='none'
                                 keyboardType='email-address'
                                 IconName={'account'}
-                                // MaterialCommunityIcons="lock"
                                 onSubmitEditing={() => inputLastName.current.focus()}
+                                Input={inputFirstName}
                                 TextInputProps={{
                                     placeholder: "Last Name",
                                     onChangeText: (text) => setLastName(text),
@@ -131,8 +130,8 @@ export const SignUpScreen = ({ navigation }) => {
                                 autoCapitalize='none'
                                 keyboardType='email-address'
                                 IconName={'account'}
-                                // MaterialCommunityIcons="lock"
                                 onSubmitEditing={() => inputUserName.current.focus()}
+                                Input={inputLastName}
                                 TextInputProps={{
                                     placeholder: "User Name",
                                     onChangeText: (text) => setUserName(text),
@@ -147,6 +146,7 @@ export const SignUpScreen = ({ navigation }) => {
                                 keyboardType='email-address'
                                 MaterialCommunityIcons="email"
                                 onSubmitEditing={() => inputEmailId.current.focus()}
+                                Input={inputUserName}
                                 TextInputProps={{
                                     placeholder: "Your Email",
                                     onChangeText: (text) => setEmail(text),

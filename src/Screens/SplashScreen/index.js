@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { saveUserDetail, saveUserToken } from '../../Redux/Actions/action.js';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LoginScreen } from '../LoginScreen/index.js';
+import IconPathVariable from '../../Helper/IconPathVariable/IconPathVariable.js';
 
 const SplashScreen = ({ navigation }) => {
 
@@ -21,44 +22,10 @@ const SplashScreen = ({ navigation }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(() => {
-            Animated.parallel([
-                Animated.timing(
-                    startAnim,
-                    {
-                        toValue: -Dimensions.get('window').height + edges.top + 65,
-                        useNativeDriver: true
-                    }
-                ),
-                Animated.timing(
-                    scaleLogo,
-                    {
-                        toValue: 0.35,
-                        useNativeDriver: true
-                    }
-                ),
-                Animated.timing(
-                    scaleTitle,
-                    {
-                        toValue: 0.8,
-                        useNativeDriver: true
-                    }
-                ),
-                Animated.timing(
-                    moveLogo,
-                    {
-                        toValue: {
-                            x: (Dimensions.get('window').width / 2) - 200,
-                            y: (Dimensions.get('window').height / 2) - 50
-                        },
-                        useNativeDriver: true
-                    }
-                ),
-            ]).start();
-        }, 2000)
+
         setTimeout(() => {
             checkIfAlreadySignedIn()
-        }, 150);
+        }, 2000);
     }, [])
 
     const checkIfAlreadySignedIn = async () => {
@@ -68,53 +35,16 @@ const SplashScreen = ({ navigation }) => {
         if (token != null && value != null) {
             dispatch(saveUserDetail(JSON.parse(value)));
             dispatch(saveUserToken(token))
-            navigation.navigate('BottomTab', {UserData: value});
+            navigation.navigate('BottomTab');
         }
-        // else {
-        //     navigation.navigate('Login');
-        // }
+        else {
+            navigation.navigate('Login');
+        }
     }
 
     return (
-        <View style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-        }}>
-            <Animated.View style={[styles.container,
-            { transform: [{ translateY: startAnim }] }]}>
-                <Animated.View style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-                >
-                    <Animated.Image source={ImagePathVariable.AppLogo} resizeMode='contain' style={[styles.logo,
-                    {
-                        transform: [
-                            { translateX: moveLogo.x },
-                            { translateY: moveLogo.y },
-                            { scale: scaleLogo },
-
-                        ]
-                    }
-                    ]} />
-                </Animated.View>
-            </Animated.View>
-
-            <Animated.View style={{
-                position: 'absolute',
-                // top: 0,
-                // bottom: 0,
-                // left: 0,
-                // right: 0,
-                backgroundColor: 'white',
-                zIndex: 0
-            }}>
-                <LoginScreen></LoginScreen>
-            </Animated.View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Image source={ImagePathVariable.AppLogo} />
         </View>
     )
 }

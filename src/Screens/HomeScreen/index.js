@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView, ToastAndroid, ActivityIndicator } from 'react-native';
+import { View, Text, ImageBackground, FlatList, TouchableOpacity, Image, ScrollView, ToastAndroid, ActivityIndicator, BackHandler, Alert } from 'react-native';
 import { LogBox } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -13,11 +13,34 @@ import { TextInput } from 'react-native-gesture-handler';
 import { SCREEN_WIDTH } from '../../Helper/DeviceDimentions';
 import { getCoursesApi } from '../../Helper/API_Call/API_Call';
 import { Colors } from '../../Helper/Colors.js';
+import { useSelector } from 'react-redux';
 
-export const HomeScreen = ( props ) => {
+export const HomeScreen = (props) => {
 
+    // useEffect(() => {
+    //         const backAction = () => {
+    //             Alert.alert("Hold on!", "Are you sure you want to go back?", [
+    //                 {
+    //                     text: "Cancel",
+    //                     onPress: () => null,
+    //                     style: "cancel"
+    //                 },
+    //                 { text: "YES", onPress: () => BackHandler.exitApp() }
+    //             ]);
+    //             return true;
+    //         };
+
+    //         const backHandler = BackHandler.addEventListener(
+    //             "hardwareBackPress",
+    //             backAction
+    //         );
+
+    //         return () => backHandler.remove();
+    //     }, []);
+
+    const user = useSelector(state => state?.coders?.userDetails)
     // console.log('props', props.data)
-    const [userName, setUserName] = useState()
+    const [userName, setUserName] = useState(user.username)
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
@@ -71,7 +94,7 @@ export const HomeScreen = ( props ) => {
                     <View>
                         <Text style={[styles.font, { fontSize: 25 }]}>Hello,</Text>
                         <Text style={[styles.font, { fontSize: 20, fontWeight: 'normal' }]}>
-                            {props.data}
+                            {userName}
                         </Text>
                     </View>
                     <View style={styles.iconContainer}>

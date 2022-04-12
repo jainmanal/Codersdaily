@@ -16,7 +16,7 @@ export const VerifyOTP = ({ route, navigation }) => {
     // const {d} = route.params
 
     const { email } = route.params;
-    console.log('userdata', email)
+    // console.log('userdata', email)
     const [Email, SetEmail] = useState(email);
     const [otp, setOtp] = useState('')
     const dispatch = useDispatch();
@@ -25,13 +25,14 @@ export const VerifyOTP = ({ route, navigation }) => {
 
     const verifyOtp = () => {
         console.log('Verify');
-        console.log(otp)
+        console.log('otp==',otp)
 
         VerifyOtp(Email, otp).then(async (res) => {
             let response = res;
-            console.log('Data===', response.status)
-            if (response.status == 200) {
-                navigation.navigate('ConfirmPass');
+            console.log('Data===', response)
+            if (response.data.status_code == 200) {
+                console.log('Data===', Email)
+                navigation.navigate('ConfirmPass', {Email: Email});
                 ToastAndroid.show(response.data.message,
                     ToastAndroid.SHORT)
             }
