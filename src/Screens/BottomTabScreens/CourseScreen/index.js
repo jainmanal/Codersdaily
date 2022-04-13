@@ -13,6 +13,7 @@ export const CourseScreen = () => {
 
     const navigation = useNavigation();
     const [DATA, setDATA] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const handleNavigation = (item) => {
         // console.log('item', item)
@@ -28,6 +29,7 @@ export const CourseScreen = () => {
             .then(async res => {
                 let response = res;
                 console.log('List', response.data)
+                setLoading(true);
                 setDATA(response.data.results)
             }).catch(e => {
                 let error = e;
@@ -53,11 +55,23 @@ export const CourseScreen = () => {
         <View>
             <CustomHeader />
             <View style={styles.maincontainer}>
-                <FlatList
-                    style={{ marginBottom: 60 }}
-                    data={DATA}
-                    renderItem={renderCourseList}
-                />
+                {
+                    loading == false ?
+                        <View style={{ justifyContent: 'center', marginTop: 180 }}>
+                            <Image source={require('../../../assets/animation/loader.gif')}
+                                style={{
+                                    height: 100,
+                                    width: 100,
+                                    alignSelf: 'center'
+                                }} />
+                        </View>
+                        :
+                        <FlatList
+                            style={{ marginBottom: 60 }}
+                            data={DATA}
+                            renderItem={renderCourseList}
+                        />
+                }
             </View>
             {/* <BottomTab/> */}
         </View>

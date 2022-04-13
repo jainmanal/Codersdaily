@@ -25,9 +25,10 @@ const IconPathVariable = {
     Edit  : require('../../assets/icon/edit.png'),      
     Logout  : require('../../assets/icon/logout.png'),   
     Fullstar : require('../../assets/icon/staar.png'),
+    Halfstar : require('../../assets/icon/halfstar.png'),
     Fullstar1 : require('../../assets/icon/staar1.png'),
     Star1 : require('../../assets/icon/star1.png'),
-
+    Idea : require('../../assets/icon/idea.png'),
     Close : require('../../assets/icon/close.png'),
 
 }

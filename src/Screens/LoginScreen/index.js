@@ -77,13 +77,19 @@ export const LoginScreen = () => {
 
     return (
         <View style={styles.mainContainer}>
-             {
+            {
                 loading ?
-                    <Spinner
-                        visible
-                        animation="fade"
-                        color={Colors.AppColor}
-                    />
+                    // <Spinner
+                    //     visible
+                    //     animation="fade"
+                    //     color={Colors.AppColor}
+                    // />
+                    <Image source={require('../../assets/animation/loader.gif')}
+                        style={{
+                            height: 80,
+                            width: 80,
+                            alignSelf: 'center'
+                        }} />
                     : null
             }
 

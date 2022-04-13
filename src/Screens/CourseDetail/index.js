@@ -11,6 +11,8 @@ import StarRating from 'react-native-star-rating';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import AnimatedLottieView from 'lottie-react-native';
+
 
 export const CourseDetail = ({ route, navigation }) => {
 
@@ -72,7 +74,7 @@ export const CourseDetail = ({ route, navigation }) => {
             marginHorizontal: 5,
             paddingVertical: 20
         }}>
-            <Image source={IconPathVariable.Book} style={{ height: 30, width: 30 }} />
+            <Image source={IconPathVariable.Idea} style={{ height: 24, width: 24 }} />
             <Text style={styles.text}>{item.lesson_name}</Text>
         </TouchableOpacity>
     )
@@ -81,40 +83,59 @@ export const CourseDetail = ({ route, navigation }) => {
         <LinearGradient colors={['#fddd2f', '#faa726']}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             style={styles.linear}>
-            <View style={{ padding: 15, alignItems: 'center', paddingVertical: 30 }}>
-                <Text style={styles.heading}>{tutorial_name}</Text>
-                <Text style={styles.txt}>Created By: <Text style={styles.name}>{author_name}</Text></Text>
-                <View style={[styles.subContainer, { marginTop: 10 }]}>
-                    <StarRating
-                        disabled={false}
-                        maxStars={5}
-                        emptyStar={IconPathVariable.Star1}
-                        fullStar={IconPathVariable.Fullstar1}
-                        halfStar={IconPathVariable.Halfstar}
-                        rating={starCount}
-                        starSize={20}
-                    />
-                    <Text style={{ marginLeft: 8, color: '#fff' }}>({starCount})</Text>
+            <View>
+                <View style={styles.contain}>
+                    <Image source={IconPathVariable.Left} style={styles.icon} />
+                    <View style={{ width: SCREEN_WIDTH * 0.9 }}>
+                        {/* <Text style={styles.heading}>{tutorial_name}</Text> */}
+                        <Image source={require('../../assets/animation/anim.gif')} 
+                        style={{ height: 80, width: 80, alignSelf: 'center', }} />
+
+                    </View>
+                </View>
+                <View style={{ marginTop: -15 }}>
+                    <Text style={styles.heading}>{tutorial_name}</Text>
+                    <Text style={styles.txt}>Created By: <Text style={styles.name}>{author_name}</Text></Text>
+                    <View style={[styles.subContainer, { marginTop: 10 }]}>
+                        <StarRating
+                            disabled={false}
+                            maxStars={5}
+                            emptyStar={IconPathVariable.Star1}
+                            fullStar={IconPathVariable.Fullstar1}
+                            halfStar={IconPathVariable.Halfstar}
+                            rating={starCount}
+                            starSize={20}
+                        />
+                        <Text style={{ marginLeft: 8, color: '#fff' }}>({starCount})</Text>
+                    </View>
                 </View>
             </View>
-            <View style={{ flex: 1, backgroundColor: '#fff', zIndex: 10, height: SCREEN_HEIGHT, borderTopStartRadius: 30, borderTopEndRadius: 30, paddingVertical: 10, }}>
+            <View style={{
+                flex: 1, backgroundColor: '#fff', zIndex: 10, height: SCREEN_HEIGHT, borderTopStartRadius: 30, borderTopEndRadius: 30, paddingVertical: 10,
+                marginTop: SCREEN_HEIGHT * 0.03
+            }}>
 
                 <ScrollView>
-                {
-                            loading == false ?
-                                <View style={{ justifyContent: 'center', marginTop: 180 }}>
-                                    <Spinner visible animation="fade" color={Colors.AppColor} />
-                                </View>
-                                :
-                    <FlatList
+                    {
+                        loading == false ?
+                            <View style={{ justifyContent: 'center', marginTop: 180 }}>
+                                <Image source={require('../../assets/animation/loader.gif')}
+                                    style={{
+                                        height: 120,
+                                        width: 120,
+                                        alignSelf: 'center'
+                                    }} />
+                            </View>
+                            :
+                            <FlatList
 
-                        scrollEnabled={false}
-                        style={{ alignSelf: 'center', marginTop: 30, }}
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id.toString()}
-                    />
-                }
+                                scrollEnabled={false}
+                                style={{ alignSelf: 'center', marginTop: 30, }}
+                                data={DATA}
+                                renderItem={renderItem}
+                                keyExtractor={item => item.id.toString()}
+                            />
+                    }
                 </ScrollView>
 
             </View>

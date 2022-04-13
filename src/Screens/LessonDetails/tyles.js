@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     heading: {
         fontSize: 26,
         fontWeight: 'bold',
-        color:Colors.black,
+        color:Colors.White,
         textAlign:'center'
     },
     bottom:{
@@ -51,5 +51,10 @@ export const styles = StyleSheet.create({
         marginVertical: 10,
         color: '#71797E',
         fontSize: 14,
+    },
+    linear: {
+        flex: 1,
+        paddingHorizontal: 5,
+
     }
 })

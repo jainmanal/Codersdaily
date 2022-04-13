@@ -189,6 +189,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    implementation 'com.facebook.fresco:animated-gif:2.6.0'
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-linear-gradient')
     implementation fileTree(dir: "libs", include: ["*.jar"])

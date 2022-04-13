@@ -11,8 +11,9 @@ export const styles = StyleSheet.create({
         color: Colors.White,
         fontWeight: 'bold',
         // textAlign: 'center',
-        marginVertical: 10,
-        // textAlign:'center'
+        // marginVertical: 10,
+        // textAlign:'center',
+        alignSelf:'center'
     },
     container: {
         zIndex: 10,
@@ -45,12 +46,14 @@ export const styles = StyleSheet.create({
     },
     subContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf:'center'
     },
     icon: {
         height: 20,
         width: 20,
-        tintColor: Colors.AppColor
+        tintColor: Colors.White,
+        // alignSelf:'flex-start'
     },
     text: {
         // width:'75%',
@@ -72,7 +75,8 @@ export const styles = StyleSheet.create({
     txt: {
         fontWeight: 'bold',
         color: Colors.White,
-        fontSize: 16
+        fontSize: 16,
+        alignSelf:'center'
     },
     name: {
         fontSize: 14,
@@ -142,5 +146,12 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 5,
 
+    },
+    contain:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginVertical: 10,
+        // justifyContent:'space-evenly',
+        // alignSelf:'flex-start'
     }
 })

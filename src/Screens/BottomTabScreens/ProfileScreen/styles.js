@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     },
     maincontainer: {
         // flex: 1,
-        marginTop: SCREEN_HEIGHT * 0.1,
+        marginTop: SCREEN_HEIGHT * 0.09,
         // padding: 10
     },
     imageContainer: {
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         borderWidth: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 45,
+        marginTop: 30,
         elevation: 10
     },
     image: {
@@ -119,6 +119,6 @@ icon1:{
 icon:{
     height: 26,
     width:26,
-    tintColor: Colors.White
+    // tintColor: Colors.White
 },
 })

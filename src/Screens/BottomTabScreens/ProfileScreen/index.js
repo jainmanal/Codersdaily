@@ -9,10 +9,12 @@ import { useSelector } from "react-redux";
 import { Colors } from "../../../Helper/Colors.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UpdateProfileApi } from "../../../Helper/API_Call/API_Call";
+import AnimatedLottieView from 'lottie-react-native';
 
 export const ProfileScreen = () => {
 
     const usertoken = useSelector(state => state?.coders?.userToken)
+    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
     const [username, setUserName] = useState('');
@@ -30,10 +32,11 @@ export const ProfileScreen = () => {
         UpdateProfileApi(usertoken).then(async res => {
             let response = res;
             console.log('EditResponse', response.data)
+            setLoading(true);
             // setParams(response.data)
             setUserName(response.data.data.username);
             setFirstName(response.data.data.first_name)
-            setLastName(response.data.data.last_name)  
+            setLastName(response.data.data.last_name)
             setEmail(response.data.data.email)
 
         }).catch(err => {
@@ -44,10 +47,12 @@ export const ProfileScreen = () => {
 
     const handleLogout = async () => {
         console.log('logout')
+        const value = await AsyncStorage.getItem('value')
         const token = await AsyncStorage.getItem('token')
-        console.log('TOKEN===', token)
+        console.log('TOKEN===', token, value)
         await AsyncStorage.removeItem('token');
-        navigation.navigate('Splash')
+        await AsyncStorage.removeItem('value')
+        navigation.navigate('Login')
         ToastAndroid.show('Logged out successfully',
             ToastAndroid.SHORT)
     }
@@ -63,25 +68,40 @@ export const ProfileScreen = () => {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
                         <Image source={IconPathVariable.Edit} style={styles.icon} />
+                        {/* <Image source={require('../../../assets/animation/edit.gif')} style={{ height: 50, width: 50, alignSelf: 'center', }} /> */}
                     </TouchableOpacity>
                 </View>
                 <View style={styles.imageContainer}>
                     <Image source={IconPathVariable.Profile} style={styles.image} />
                 </View>
             </ImageBackground>
+            {
+                        loading == false ?
+                            <View style={{ justifyContent: 'center', marginTop: 180 }}>
+                                <Image source={require('../../../assets/animation/loader.gif')}
+                                    style={{
+                                        height: 100,
+                                        width: 100,
+                                        alignSelf: 'center'
+                                    }} />
+                            </View>
+                            :
             <View style={styles.maincontainer}>
                 <Text style={styles.name}>{username}</Text>
                 <View style={styles.subContainer}>
                     <View style={styles.container}>
-                        <MaterialCommunityIcons name={'account'} color={Colors.AppColor} size={24} />
+                        <Image source={require('../../../assets/animation/profile.gif')}
+                            style={{ height: 30, width: 30, alignSelf: 'center', }} />
                         <Text style={styles.text}>{firstname} {lastname}</Text>
                     </View>
                     <View style={styles.container}>
-                        <MaterialCommunityIcons name={'email'} color={Colors.AppColor} size={24} />
+                    <Image source={require('../../../assets/animation/mail.gif')}
+                            style={{ height: 30, width: 30, alignSelf: 'center', }} />
                         <Text style={styles.text}>{email}</Text>
                     </View>
                 </View>
             </View>
+}
             <TouchableOpacity onPress={() => handleLogout()}
                 style={styles.button}>
                 <Text style={styles.logout}>Sign Out</Text>

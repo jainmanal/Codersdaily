@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     textBox: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 15,
+        // paddingHorizontal: 15,
         backgroundColor: Colors.White,
         borderRadius: 30,
         marginVertical: 10,
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     },
     input: {
         fontSize: 16,
-        marginLeft: 10
+        // marginLeft: 10
     },
     container: {
         // marginTop: 10,

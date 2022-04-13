@@ -14,6 +14,8 @@ import { SCREEN_WIDTH } from '../../Helper/DeviceDimentions';
 import { getCoursesApi } from '../../Helper/API_Call/API_Call';
 import { Colors } from '../../Helper/Colors.js';
 import { useSelector } from 'react-redux';
+import AnimatedLottieView from 'lottie-react-native';
+
 
 export const HomeScreen = (props) => {
 
@@ -43,6 +45,7 @@ export const HomeScreen = (props) => {
     const [userName, setUserName] = useState(user.username)
     const [DATA, setDATA] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [show, setShow] = useState(false)
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -103,13 +106,16 @@ export const HomeScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
+
                 <View style={[styles.textBox, {}]}>
-                    <Image source={IconPathVariable.Search1} style={[styles.bellIcon, { tintColor: '#fcd02d' }]} />
+                    <Image source={require('../../assets/animation/search.gif')}
+                        style={{ height: 48, width: 48 }} />
                     <TextInput
                         style={styles.input}
                         placeholder='Search your topic'
                     />
                 </View>
+
             </ImageBackground>
             <ScrollView>
                 <View style={styles.maincontainer}>
@@ -123,7 +129,7 @@ export const HomeScreen = (props) => {
                         {
                             loading == false ?
                                 <View style={{ justifyContent: 'center', marginTop: 180 }}>
-                                    <Spinner visible animation="fade" color={Colors.AppColor} />
+                                    <Image source={require('../../assets/animation/loader.gif')} style={{ height: 120, width: 120, alignSelf: 'center' }} />
                                 </View>
                                 :
                                 <FlatList
@@ -137,19 +143,6 @@ export const HomeScreen = (props) => {
                         }
 
                     </View>
-                    {/* <View style={styles.container}>
-                        <View style={styles.contain}>
-                            <Text style={styles.cource}>Colleges</Text>
-                            <TouchableOpacity onPress={() => navigation.navigate('CollegeTab')}>
-                                <Text style={styles.text}>See More</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <FlatList
-                            horizontal={true}
-                            data={DATA1}
-                            renderItem={renderItem1}
-                        />
-                    </View> */}
                 </View>
             </ScrollView>
         </View>
